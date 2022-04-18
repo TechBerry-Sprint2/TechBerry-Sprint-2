@@ -45,10 +45,9 @@ body {
     color: white;
     display: flex;
     flex-direction: row; 
-    justify-content: space-between;
     align-items: center;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-right: 300px;
+    width: 35%;
     /* text-shadow: 1px 1px black;  */
     /* border: 3px solid blue; */
 }
@@ -181,14 +180,10 @@ a {
 .ipt {
     display: flex;
     border-radius: 24px;
-}
-
-.banner_login .login .ipt{
+    font-size: 14px;
+    text-align: center;
     height: 40px;
     width: 320px;
-    font-size: 20px;
-    justify-items: center;
-    text-align: center;
 }
 
 .login a {
@@ -218,6 +213,7 @@ a {
     border-radius: 24px;
     width: 1000px;
     height: 540px;
+    padding: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -229,63 +225,61 @@ a {
 .banner_cadastro .container{
     justify-content: center;
     display: flex;
-    float: center
+    align-items: center;
 }
 
-.banner_cadastro .container .cadastro .boxes_cadastro{
+.boxes_cadastro{
     display: flex;
-    justify-content: center;
-    margin: 10px;
-    
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    flex-direction: row;
 }
 
-.banner_cadastro .container .cadastro .boxes_cadastro .linha{
-    height: 325px;
-    width: 2px;
+.boxes_cadastro .linha{
+    height: 100%;
+    width: 1px;
     background-color: rgb(239, 239, 239);
-    display: flex;
+    
+}
+
+.box_cadastro{
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    margin-left: 10px;
-    
 }
 
-.banner_cadastro .container .cadastro .boxes_cadastro .boxes_cadastro1{
-    margin-right: 10px;
+.campo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: medium;
+    font-weight: bold;
+    justify-content: space-around;
+    height: 100px;
 }
 
-.banner_cadastro .container .cadastro .boxes_cadastro .boxes_cadastro2{
-    margin-left: 10px;
-    
-}
-
-.banner_cadastro .container .cadastro .cadastro_titulo{
+.cadastro_titulo{
     align-items: center;
     display: flex;
     justify-content: center;
 }
 
-.banner_cadastro .container .cadastro .fim_registro{
+.fim_cadastro{
     align-items: center;
     justify-content: center;
 }
 
-.banner_cadastro .container .cadastro .fim_registro .btn_cadastro{
+.btn_cadastro{
     border-radius: 24px;
     height: 40px;
-    width: 350px;
+    width: 300px;
     font-size: 20px;
     margin-top: 30px;
     border: none;
     justify-items: center;
-}
-
-.banner_cadastro .container .cadastro .ipt{
-    border-radius: 24px;
-    height: 20px;
-    width: 320px;
-    font-size: 12px;
-    justify-items: center;
-
 }
 
 .banner h1 {
@@ -305,8 +299,6 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-    
 }
 
 .social .container h4{
