@@ -125,41 +125,38 @@ a {
 
 .banner {
     display: flex;
-    align-items: center;
     /* border: 3px solid blue;  */
-}
-
-.banner h1 {
-    padding-top: 50px;
-    padding-bottom: 50px;
-    color: white;
-    font-size: 50px;
-    width: 48%;
-    /* text-shadow: 1px 1px black;  */
 }
 
 .banner .container {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
+    margin-bottom: 2%;
+    /* border: 3px solid blue; */
 }
 
-.box1 h1{
+.box1 {
     display: flex;
     width: 550px;
     height: 550px;
+    color: white;
+    font-size: xx-large;
+    align-items: center;
 }
 
 .box2 {
-    margin-left: 200px;
-    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
     background-color: white;
     border-radius: 50px;
-    height: 550px;
-    width: 650px;
+    width: 550px;
     align-items: center;
-    text-align: center;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    justify-content: center;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
 }
+
 #butao {
     background-color: whitesmoke;
     color: black;
@@ -171,13 +168,26 @@ a {
     border-radius: 24px;
     border: 0;
     padding: 10px;
-    margin-left: 190px;
+    margin: 25px;
 }
 
-.box2 div{
-    margin-left: 150px;
+.ipt {
     display: flex;
-    font-size: small;
+    border-radius: 24px;
+    font-size: 14px;
+    text-align: center;
+    height: 40px;
+    width: 320px;
+    margin-top: 25px;
+}
+
+#resultado{
+    width: 90%;
+    margin-bottom: 25px;
+}
+
+.box2 span {
+    color: gray;
 }
 
 /* FOOTER */

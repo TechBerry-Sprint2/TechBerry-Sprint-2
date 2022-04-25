@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background: black;
+    background: #B31C45;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -18,7 +18,8 @@ body {
 .fundo_servicos {
     margin: auto;
     /* background-image: url(imgs/multiple-strawberries-blue-background-cut4.jpg); */
-    background-image: url(https://i.ytimg.com/vi/l1Cnz4Jeq5Q/maxresdefault.jpg);
+    background-image: url(https://i.ytimg.com/vi/l1Cnz4Jeq5Q/maxresdefault.jpg), url(https://www.colorhexa.com/b31c45.png);
+    background-blend-mode: multiply;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -84,7 +85,7 @@ body {
 .cadastro_botao {
     background-color: white;
     color: black;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
     width: 98px;
     padding: 10px;
     border-radius: 24px;
@@ -103,7 +104,7 @@ body {
 .login_botao {
     background-color: #E3101F;
     color: white;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
     width: 84px;
     padding: 10px;
     border-radius: 24px;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 
 <head>
     <meta charset="UTF-8">
@@ -68,10 +68,12 @@
                     <h1>Calcule o quanto você deixaria de perder com nossos serviços!</h1>
                 </div>
                 <div class="box2">
-                    <h3>Preço da muda do morango: R$5,90 </h3>
-                    <h3>Plantas por metro quadrado: 7,5 </h3> 
-                    <h3>Qual a área de plantação você deseja? (Em m²) </h3>
-                    <input id="area"> <br><br>
+                    <h1>Simulador Financeiro</h1>
+                    <h3>Qual a área de plantação que você deseja? (Em m²) </h3>
+                    <span>Considere:</span>
+                    <span>Muda do morango = R$5,90 </span>
+                    <span>Plantas por m² = 7,5 </span> 
+                    <input class="ipt" id="area"> 
                     <button onclick="calculo()" id="butao">Calcular</button> 
                     <div id="resultado"></div>
                 </div>
@@ -143,9 +145,9 @@
 <script>
 function calculo(){
         var muda = 7.5;
+        var muda_total = area.value * muda
         var preco = (area.value * muda) * 5.90;
-        resultado.style.width = '40%';
-        resultado.innerHTML = `<br><br><br><h3>Baseado na área de <u>${area.value}m²</u>, você precisará de <u>${area.value * muda} mudas</u>, que custarão <u>R$${preco}</u>.<br><br>Sabendo que a perda de morango por colheita é em média de 30%, nós conseguiriamos te ajudar a lucrar mais R$${(preco - (preco * 0.7)).toFixed(2)} que seriam perdidos!</h3>`;
+        resultado.innerHTML = `Baseado na área de <u>${area.value}m²</u>, você precisará de <u>${muda_total} mudas</u>, que custarão <u>R$${preco.toFixed(2)}</u>.<br><br>Sabendo que a perda de morango por colheita é em média de 30%, nós conseguiriamos te ajudar a <b>lucrar mais R$${(preco*0.3).toFixed(2)}</b> que seriam perdidos!`;
     }
     
 </script>
