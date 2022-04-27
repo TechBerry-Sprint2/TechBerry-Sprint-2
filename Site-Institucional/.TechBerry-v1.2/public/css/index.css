@@ -4,6 +4,26 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.aqui {
+    background-image: linear-gradient(
+        transparent 0%,
+        transparent 90%,
+        hotpink 90%,
+        hotpink 100%,
+    );
+
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    background-position-x: right;
+    transition: background-size 300ms;
+}
+
+.aqui:hover {
+    background-size: 100% 100%;
+    background-position-x: left;
+}
+
+
 .container {
     width: 80vw;
     margin: auto;
