@@ -8,7 +8,7 @@ CREATE TABLE cliente(
     idCliente INT PRIMARY KEY AUTO_INCREMENT,
     nomeCliente VARCHAR(45) NOT NULL,
     CNPJ CHAR(18) NOT NULL UNIQUE,
-    telefoneCliente CHAR(12) NOT NULL UNIQUE,
+    telefoneCliente CHAR(14) NOT NULL UNIQUE,
     emailCliente CHAR(45) NOT NULL UNIQUE,
     senha VARCHAR(45) NOT NULL
 );
@@ -39,12 +39,12 @@ CREATE TABLE medida(
 ) AUTO_INCREMENT = 10000;
 
 INSERT INTO cliente VALUES
-(NULL, 'Amaral da Silva Amado', '32.501.780/0001-40', '1197895-2145', 'amaral@sptech.school', '12345678'),
-(NULL, 'Bernado Lima Ameixado', '36.108.006/0001-24', '1198757-8574', 'bernardo@sptech.school', '12345678'),
-(NULL, 'Anderson Vasques Dias', '95.546.822/0001-89', '1198962-7413', 'anderson@sptech.school', '12345678'),
-(NULL, 'Cauan Alvares Migueli', '65.096.888/0001-53', '1197854-1115', 'cauan@sptech.school', '12345678'),
-(NULL, 'Davi dos Santos Faria', '67.500.410/0001-72', '1193821-2322', 'davi@sptech.school', '12345678'),
-(NULL, 'Osmar Loss dos Santos', '84.222.772/0001-68', '1199875-7858', 'osmar@sptech.school', '12345678');
+(NULL, 'Amaral da Silva Amado', '32.501.780/0001-40', '(11)97895-2145', 'amaral@sptech.school', '12345678'),
+(NULL, 'Bernado Lima Ameixado', '36.108.006/0001-24', '(11)98757-8574', 'bernardo@sptech.school', '12345678'),
+(NULL, 'Anderson Vasques Dias', '95.546.822/0001-89', '(11)98962-7413', 'anderson@sptech.school', '12345678'),
+(NULL, 'Cauan Alvares Migueli', '65.096.888/0001-53', '(11)97854-1115', 'cauan@sptech.school', '12345678'),
+(NULL, 'Davi dos Santos Faria', '67.500.410/0001-72', '(11)93821-2322', 'davi@sptech.school', '12345678'),
+(NULL, 'Osmar Loss dos Santos', '84.222.772/0001-68', '(11)99875-7858', 'osmar@sptech.school', '12345678');
 
 INSERT INTO estufa VALUES
 (NULL, 'Fazenda do Seu Amaral', 'Rua Alvares Canastra, 78 - Jd. Campo Belo, Campinas - SP', 1),
@@ -187,4 +187,4 @@ WHERE idMedida = 10605
 AND medida.idSensor = sensor.idSensor
 AND sensor.idEstufa = estufa.idEstufa
 AND estufa.idCliente = cliente.idCliente;
-
+																		
