@@ -89,7 +89,7 @@
                     <div class="nome_estufa">Estufa 1</div>
                     <h1 class="categoria">Temperatura</h1>
                     <div class="informacoes_tudo">
-                        <div class="informacoes">
+                        <div class="informacoes info1">
                             <div class="box1">
 
                                 <span class="titulo">Histórico de Temperatura (°C)</span>
@@ -99,50 +99,6 @@
                                 <div>
                                     <canvas id="chart_temp"></canvas>
                                 </div>
-                            </div>
-                            <div class="box2">
-
-                                <div class="kpi anor_temp">
-                                    <span class="titulo">Anormalidades</span>
-                                    <span>(últimas 24h)</span>
-                                    <span class="valor_kpi">
-                                        2
-                                    </span>
-                                    <ul class="msg">
-                                        <li><div class="msg_estado alerta-quente"></div>
-                                            Sensor 3: 22°C (14:00)
-                                        </li>
-
-                                        <li><div class="msg_estado alerta-quente"></div>
-                                            Sensor 3: 24°C (14:30)
-                                        </li>
-                                    </ul>
-                                    <div class="valor_alerta alerta-quente"></div>
-                                </div>
-
-                                <div class="kpi maior_temp">
-                                    <span class="titulo">Maior Temperatura</span>
-                                    <span>(últimas 24h)</span>
-                                    <span class="valor_kpi">24°C</span>
-                                    <ul class="msg">
-                                        <li><div class="msg_estado alerta-quente"></div> 
-                                            Sensor 3: 24°C (14:30)
-                                        </li>
-                                    </ul>
-                                    <div class="valor_alerta alerta-quente"></div>
-                                </div>
-                                <div class="kpi menor_temp">
-                                    <span class="titulo">Menor Temperatura</span>
-                                    <span>(últimas 24h)</span>
-                                    <span class="valor_kpi">18°C</span>
-                                    <ul class="msg">
-                                        <li><div class="msg_estado ideal"></div> 
-                                            Sensor 1: 18°C (13:00)
-                                        </li>
-                                    </ul>
-                                    <div class="valor_alerta ideal"></div>
-                                </div>
-
                             </div>
                             <div class="box3">
                                 <span class="titulo">Temperatura em Tempo Real</span>
@@ -156,10 +112,60 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="informacoes info2">
+                            <div class="box2">
+
+                                <div class="kpi anor_temp">
+                                    <span class="titulo">Anormalidades</span>
+                                    <span>(últimas 24h)</span>
+                                    <span class="valor_kpi">
+                                        2
+                                    </span>
+                                    <ul class="msg">
+                                        <li>
+                                            <div class="msg_estado alerta-quente"></div>
+                                            Sensor 3: 22°C (14:00)
+                                        </li>
+
+                                        <li>
+                                            <div class="msg_estado alerta-quente"></div>
+                                            Sensor 3: 24°C (14:30)
+                                        </li>
+                                    </ul>
+                                    <div class="valor_alerta alerta-quente"></div>
+                                </div>
+
+                                <div class="kpi maior_temp">
+                                    <span class="titulo">Maior Temperatura</span>
+                                    <span>(últimas 24h)</span>
+                                    <span class="valor_kpi">24°C</span>
+                                    <ul class="msg">
+                                        <li>
+                                            <div class="msg_estado alerta-quente"></div>
+                                            Sensor 3: 24°C (14:30)
+                                        </li>
+                                    </ul>
+                                    <div class="valor_alerta alerta-quente"></div>
+                                </div>
+                                <div class="kpi menor_temp">
+                                    <span class="titulo">Menor Temperatura</span>
+                                    <span>(últimas 24h)</span>
+                                    <span class="valor_kpi">18°C</span>
+                                    <ul class="msg">
+                                        <li>
+                                            <div class="msg_estado ideal"></div>
+                                            Sensor 1: 18°C (13:00)
+                                        </li>
+                                    </ul>
+                                    <div class="valor_alerta ideal"></div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="categoria">Umidade</div>
+                    <h1 class="categoria">Umidade</h1>
                     <div class="informacoes_tudo">
-                        <div class="informacoes">
+                        <div class="informacoes info1">
                             <div class="box1">
                                 <span class="titulo">Histórico de Umidade (%)</span>
                                 <div class="parte1_umid">
@@ -168,52 +174,6 @@
                                 <div>
                                     <canvas id="chart_umid"></canvas>
                                 </div>
-                            </div>
-                            <div class="box2">
-
-                                <div class="kpi anor_umid">
-                                    <span class="titulo">Anormalidades</span>
-                                    <span>(últimas 24h)</span>
-                                    <span class="valor_kpi">
-                                        3
-                                    </span>
-                                    <ul class="msg">
-                                        <li><div class="msg_estado alerta-quente"></div> 
-                                            Sensor 4: 68% (14:30)
-                                        </li> 
-                                        <li><div class="msg_estado alerta-quente"></div> 
-                                            Sensor 4: 73% (15:00)
-                                        </li>
-                                        <li><div class="msg_estado perigo-quente"></div> 
-                                            Sensor 4: 78% (15:30)
-                                        </li>
-                                    </ul>
-                                    <div class="valor_alerta perigo-quente"></div>
-                                </div>
-
-                                <div class="kpi maior_umid">
-                                    <span class="titulo">Maior Umidade</span>
-                                    <span>(últimas 24h)</span>
-                                    <span class="valor_kpi">78%</span>
-                                    <ul class="msg">
-                                        <li><div class="msg_estado perigo-quente"></div> 
-                                            Sensor 4: 78% (15:30)
-                                        </li>
-                                    </ul>
-                                    <div class="valor_alerta perigo-quente"></div>
-                                </div>
-                                <div class="kpi menor_umid">
-                                    <span class="titulo">Menor Umidade</span>
-                                    <span>(últimas 24h)</span>
-                                    <span class="valor_kpi">38%</span>
-                                    <ul class="msg">
-                                        <li><div class="msg_estado ideal"></div> 
-                                            Sensor 2: 38% (11:30)
-                                        </li>
-                                    </ul>
-                                    <div class="valor_alerta ideal"></div>
-                                </div>
-
                             </div>
                             <div class="box3">
                                 <span class="titulo">Temperatura em Tempo Real</span>
@@ -227,10 +187,63 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="informacoes info2">
+                            <div class="box2">
+
+                                <div class="kpi anor_umid">
+                                    <span class="titulo">Anormalidades</span>
+                                    <span>(últimas 24h)</span>
+                                    <span class="valor_kpi">
+                                        3
+                                    </span>
+                                    <ul class="msg">
+                                        <li>
+                                            <div class="msg_estado alerta-quente"></div>
+                                            Sensor 4: 68% (14:30)
+                                        </li>
+                                        <li>
+                                            <div class="msg_estado alerta-quente"></div>
+                                            Sensor 4: 73% (15:00)
+                                        </li>
+                                        <li>
+                                            <div class="msg_estado perigo-quente"></div>
+                                            Sensor 4: 78% (15:30)
+                                        </li>
+                                    </ul>
+                                    <div class="valor_alerta perigo-quente"></div>
+                                </div>
+
+                                <div class="kpi maior_umid">
+                                    <span class="titulo">Maior Umidade</span>
+                                    <span>(últimas 24h)</span>
+                                    <span class="valor_kpi">78%</span>
+                                    <ul class="msg">
+                                        <li>
+                                            <div class="msg_estado perigo-quente"></div>
+                                            Sensor 4: 78% (15:30)
+                                        </li>
+                                    </ul>
+                                    <div class="valor_alerta perigo-quente"></div>
+                                </div>
+                                <div class="kpi menor_umid">
+                                    <span class="titulo">Menor Umidade</span>
+                                    <span>(últimas 24h)</span>
+                                    <span class="valor_kpi">38%</span>
+                                    <ul class="msg">
+                                        <li>
+                                            <div class="msg_estado ideal"></div>
+                                            Sensor 2: 38% (11:30)
+                                        </li>
+                                    </ul>
+                                    <div class="valor_alerta ideal"></div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="categoria">Sensores</div>
+                    <h1 class="categoria">Sensores</h1>
                     <div class="informacoes_tudo">
-    
+
                     </div>
                 </div>
 
