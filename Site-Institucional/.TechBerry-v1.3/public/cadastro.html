@@ -91,7 +91,7 @@
                         <div class="box_cadastro">
                             <div class="campo">
                                 Telefone
-                                <input id="telefone_input" type="text" class="ipt" placeholder="(99)99999-9999">
+                                <input id="telefone_input" type="text" class="ipt" placeholder="(99) 99999-9999">
                             </div>
                             <div class="campo">
                                 Senha
@@ -154,15 +154,15 @@
         if (cnpjVar.indexOf("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z") >= 0){
             alert("Ops, CNPJ inválido! Verifique e tente novamente")
         }
-        else if (cnpjVar.lenght(18) == false){
+        else if (cnpjVar.length != 18){
             alert("O CNPJ deve ter 18 dígitos, incluindo caractéres especiais.");
         }
 
         if (telefoneVar.indexOf("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z") >= 0){
             alert("Ops, Telefone inválido! Verifique e tente novamente.")
         }
-        else if (telefoneVar.lenght(14) == false){
-            alert("O Telefone deve ter 14 dígitos, incluindo caractéres especiais.")
+        else if (telefoneVar.lenght < 8 || telefoneVar.length > 15){
+            alert("O Telefone deve ter no mínimo 8 dígitos e no máximo 15 dígitos, incluindo caractéres especiais.")
         }
         
 

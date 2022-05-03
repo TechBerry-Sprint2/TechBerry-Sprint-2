@@ -11,22 +11,41 @@ body {
 
 }
 
-details>summary {
-    list-style: none;
+.direita {
+    padding: 0 64px 32px 25%;
+    background-color: white;
+    width: 80%;
 }
+
+/* NAVBAR - INÍCIO */
 
 .esquerda {
     /* Características da separação do lado esquerdo */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
     clip-path: inset(0px -15px 0px 0px);
-    width: 20vw;
+    width: 17vw;
     height: 100vh;
     padding: 32px;
     background-color: #B31C45;
     position: fixed;
-    top: 0;
-    bottom: 0;
 }
+
+details summary {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.esquerda summary:hover {
+    text-decoration: underline;
+}
+
 
 .hello {
     text-align: center;
@@ -46,45 +65,190 @@ details>summary {
     margin: 0 auto;
     width: 50%;
     border-radius: 30px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
 }
 
-.esquerda .btn-nav details {
+.esquerda details {
     font-size: 1.17em;
 }
 
-.esquerda .btn-nav a,
-.esquerda .btn-nav {
+.btn_todos {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.btn-nav, .btn-logout {
+    margin-bottom: 48px;
+    font-size: large;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    background-color: #E3101F;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    height: 32px;
+    border-radius: 32px;
+    padding: 18px;
+    color: white;
+  
+}
+
+.lista .btn-nav {
+    margin-bottom: 0px;
+    padding: 15px;
+}
+
+.btn-nav:hover, .btn-logout:hover {
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.lista {
+    margin-bottom: 48px;
+    width: 100%;
+    height: fit-content;
+    border-radius: 32px;
+    color: black;
+    background-color: white;
+}
+
+.lista details {
+    display: flex;
+    flex-direction: column;
+}
+
+.lista-itens {
+    display: flex;
+    flex-direction: column;
+    padding: 18px;
+}
+
+.lista details .lista-itens a {
     display: flex;
     flex-direction: row;
-    text-decoration: none;
+    align-items: center;
+    color: #E3101F;
     font-weight: bold;
-    cursor: pointer;
-    color: #fff;
+    margin-bottom: 12px;
+}
+
+.icon-nav {
+    width: 24px;
+    margin-right: 12px;
+    filter: invert(100%);
+}
+
+.icon-lista {
+    width: 24px;
+    margin-right: 12px;
 }
 
 
-
-.esquerda .btn-nav details a {
-    padding: 4px 0px 0px 16px;
-    color: #fff;
-}
-
-.esquerda .btn-nav a:hover {
-    text-decoration: underline;
-}
-
-.esquerda .btn-nav .selected {
+.selected {
     /* font-size: larger; */
     font-weight: bolder;
 }
 
-.esquerda .btn-logout h3 {
-    color: #fff;
+/* NAVBAR - FIM */
+
+/* RÉGUA - INÍCIO */
+
+.teste {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 32px;
+    border-radius: 0px 0px 24px 24px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
 }
 
-.direita {
-    padding: 32px 64px 32px 30%;
-    background-color: white;
-    width: 80%;
+.teste h5 {
+    font-size: medium;
+    font-weight: normal;
+    margin: 12px;
 }
+
+.nome_metrica {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #E3101F;
+    padding: 12px 0px 12px 0px;
+    width: 100%;
+    color:white;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.regua {
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    border-radius: 24px;
+
+}
+
+.item-regua {
+    width: 18%;
+    height: 100px;
+    padding-bottom: 24px;
+    text-align: center;
+}
+
+.metrica_unidade {
+    background-color: #E3101F;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    color: white;
+    font-weight: bold;
+}
+
+.regua h3 {
+    margin: 12px;
+    padding: 3px;
+    border-radius: 24px;
+}
+
+.perigo-frio {
+    background-color: #485abc;
+    color: white;
+}
+
+.perigo-quente {
+    background-color: #a32600;
+    color: white;
+}
+
+.alerta-frio {
+    background-color: #42a5f5;
+    color: white;
+}
+
+.alerta-quente {
+    background-color: #e0ce2b;
+    color: white;
+}
+
+.ideal {
+    background-color: #9ccc65;
+    color: white;
+}
+
+/* RÉGUA - FIM */
+
+/* GRÁFICOS - COMEÇO */
+canvas {
+    padding: 24px;
+}
+
+/* GRÁFICOS - FIM */

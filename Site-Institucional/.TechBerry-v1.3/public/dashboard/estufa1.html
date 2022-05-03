@@ -23,68 +23,88 @@
         <div class="esquerda">
             <h1>TechBerry</h1>
 
-            <div class="esquerdaImg">
-                <img src="../imgs/logo1.png" alt="">
-            </div>
+            <a href="home_dashboard.html">
+                <div class="esquerdaImg">
+                    <img src="../imgs/logo1.png" alt="">
+                </div>
+            </a>
 
             <div class="hello">
                 <h3>Olá, <span id="b_usuario">user</span>!</h3>
             </div>
 
-            <div class="btn-nav">
-                <a href="home_dashboard.html">
-                    <h3>Home</h3>
+            <div class="btn_todos">
+                <a class="btn-nav" href="home_dashboard.html">
+                    <img class="icon-nav" src="../imgs/home-icon.png" alt="">
+                    <span class="selected">Home</span>
                 </a>
-            </div>
 
-            <div class="btn-nav">
-                <details>
-                    <summary class="selected">Estufas</summary>
-                    <a href="estufa1.html" class="selected">Estufa 1</a>
-                    <a href="estufa2.html">Estufa 2</a>
-                </details>
-            </div>
 
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
+                <span class="lista">
+                    <details>
+
+                        <summary class="btn-nav">
+                            <img class="icon-nav" src="../imgs/plant-pot.png" alt="">
+                            <span>Estufas</span>
+                        </summary>
+                        <span class="lista-itens">
+                            <a href="estufa1.html">
+                                <img class="icon-lista" src="../imgs/plant-pot-red.png" alt="">
+                                <span class="selected">Estufa 1</span>
+                            </a>
+                            <a href="estufa2.html">
+                                <img class="icon-lista" src="../imgs/plant-pot-red.png" alt="">
+                                <span>Estufa 2</span>
+                            </a>
+                        </span>
+                    </details>
+                </span>
+
+
+                <div class="btn-logout" onclick="limparSessao()">
+                    <img class="icon-nav" src="../imgs/exit-icon.png" alt="">
+                    <span>Sair</span>
+                </div>
             </div>
         </div>
 
         <div class="direita">
 
-            <div class="principais">
-                <div class="teste">
-                    <span class="titulo">Métricas</span>
+            <div class="teste">
+                <div class="nome_metrica">
+                    Métricas
                     <h5>Temperatura (°C) | Umidade (%)</h5>
+                </div>
 
-                    <div class="regua">
-                        <div class="item-regua perigo-frio">
-                            <h3>Perigo</h3>
-                            <h5>12.2°C</h5>
-                            <h5>20%</h5>
-                        </div>
-                        <div class="item-regua alerta-frio">
-                            <h3>Alerta</h3>
-                            <h5>17.7°C</h5>
-                            <h5>37%</h5>
-                        </div>
-                        <div class="item-regua ideal">
-                            <h3>Ideal</h3>
-                            <h5>17.8ºC - 21.9°C</h5>
-                            <h5>37.1% - 64.4%</h5>
-                        </div>
-                        <div class="item-regua alerta-quente">
-                            <h3>Alerta</h3>
-                            <h5>22°C</h5>
-                            <h5>64.5%</h5>
-                        </div>
-                        <div class="item-regua perigo-quente">
-                            <h3>Perigo</h3>
-                            <h5>26.7°C</h5>
-                            <h5>76%</h5>
-                        </div>
+                <div class="regua">
+                    <div class="item-regua">
+                        <h3 class="perigo-frio">Perigo</h3>
+                        <h5>12.2°C</h5>
+                        <h5>20%</h5>
+                    </div>
+                    <div class="item-regua ">
+                        <h3 class="alerta-frio">Alerta</h3>
+                        <h5>17.7°C</h5>
+                        <h5>37%</h5>
+                    </div>
+                    <div class="item-regua">
+                        <h3 class="ideal">Ideal</h3>
+                        <h5>17.8ºC - 21.9°C</h5>
+                        <h5>37.1% - 64.4%</h5>
+                    </div>
+                    <div class="item-regua">
+                        <h3 class="alerta-quente">Alerta</h3>
+                        <h5>22°C</h5> 
+                        <h5>64.5%</h5>
+                    </div>
+                    <div class="item-regua">
+                        <h3 class="perigo-quente">Perigo</h3>
+                        <h5>26.7°C</h5>
+                        <h5>76%</h5> 
                     </div>
                 </div>
+            </div>
+            <div class="principais">
                 <div class="principal1">
                     <div class="nome_estufa">Estufa 1</div>
                     <h1 class="categoria">Temperatura</h1>
@@ -101,10 +121,10 @@
                                 </div>
                             </div>
                             <div class="box3">
-                                <span class="titulo">Temperatura em Tempo Real</span>
+                                <span class="titulo">Temperatura Atual</span>
                                 <div class="parte1_temp">
-                                    <span>Status atual:</span>
-                                    <div class="status"></div> <span>Ideal</span>
+                                    <span>Status:</span>
+                                    <div class="status ideal"></div> <span>Ideal</span>
                                 </div>
                                 <div class="parte2_temp">
                                     <canvas id="chart_tempReal"></canvas>
@@ -176,10 +196,10 @@
                                 </div>
                             </div>
                             <div class="box3">
-                                <span class="titulo">Temperatura em Tempo Real</span>
+                                <span class="titulo">Umidade Atual</span>
                                 <div class="parte1_umid">
-                                    <span>Status atual:</span>
-                                    <div class="status"></div> <span>Alerta</span>
+                                    <span>Status:</span>
+                                    <div class="status alerta-quente"></div> <span>Alerta</span>
                                 </div>
                                 <div class="parte2_umid">
                                     <canvas id="chart_umidReal"></canvas>
@@ -246,10 +266,6 @@
 
                     </div>
                 </div>
-
-
-
-
             </div>
         </div>
 
@@ -407,7 +423,7 @@
             label: 'Umidade',
             data: [66, 34],
             backgroundColor: [
-                '#ffee58',
+                '#e0ce2b',
                 'whitesmoke'
             ],
             hoverOffset: 4

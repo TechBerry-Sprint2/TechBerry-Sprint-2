@@ -1,30 +1,92 @@
 
 .principais {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
-.principal1,
-.principal2,
-.principal3 {
-    /* padding: 32px; */
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-    clip-path: inset(-15px -15px -15px);
-    margin-left: 10px;
-    width: 90%;
-    padding-bottom: 32px;
-    border-radius: 24px;
-    text-align: center;
-}
-.principal3 {
-    box-shadow: none;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    width: 100%;
+}
+
+.principal1 {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+    border-radius: 24px;
+    width: 100%;
+    height: 620px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.principal1 h1 {
+    font-size: 100px;
+}
+
+.nome_estufa {
+    color: white;
+    background-color: #E3101F;
+    border-radius: 24px 0px 0px 24px ;
+    font-weight: bold;
+    font-size: xx-large;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.informacoes_tudo {
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+    width: 60%;
+}
+
+.informacoes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.info1 {
+ 
+}
+
+.info2 {
+  
+}
+
+
+
+.box1 {
+    padding: 12px 24px 12px 24px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    border-radius: 24px;
+}
+
+.box1 canvas {
+    width: 18vw;
+    position: relative;
+}
+
+.titulo {
+    font-weight: bold;
+}
+
+.parte1_temp,
+.parte1_umid {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 12px 6px 12px;
+    margin-top: 12px;
+    border-radius: 24px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+}
+
+.box2 {
+
 }
 
 .kpi1{
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
     clip-path: inset(-15px -15px -15px);
     padding: 8px;
     margin: 30px;
@@ -38,80 +100,6 @@
     padding: 8px;
     margin: auto;
     width: 50%;
-}
-
-.informacoes #titulo {
-    font-size: 18px;
-    font-weight: bold;
-    display: block;
-}
-
-.informacoes #sensor {
-    font-weight: bold;
-    font-size: 17px;
-}
-
-.informacoes #medidas {
-    font-size: 17px;
-}
-
-.regua {
-    display: flex;
-    /* flex-wrap: wrap; */
-    justify-content: center;
-    width: 75%;
-    border-radius: 24px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-}
-
-.teste {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 32px;
-    margin-bottom: 32px;
-}
-
-.regua h2,
-h4 {
-    margin: 12px;
-}
-
-.perigo-frio {
-    background-color: #5c6bc0;
-    /* box-shadow: 0 0 8px rgba(0,0,0,0.4); */
-    clip-path: inset(-15px -15px -15px);
-    border-radius: 24px 0px 0px 24px;
-}
-
-.perigo-quente {
-    background-color: #ff7043;
-    /* box-shadow: 0 0 8px rgba(0,0,0,0.4); */
-    clip-path: inset(-15px -15px -15px);
-    border-radius: 0px 24px 24px 0px;
-}
-
-.alerta-frio {
-    background-color: #42a5f5;
-    /* box-shadow: 0 0 8px rgba(0,0,0,0.4); */
-    clip-path: inset(-15px -15px -15px);
-}
-
-.alerta-quente {
-    background-color: #ffee58;
-    /* box-shadow: 0 0 8px rgba(0,0,0,0.4); */
-    clip-path: inset(-15px -15px -15px);
-}
-
-.ideal {
-    background-color: #9ccc65;
-    /* box-shadow: 0 0 8px rgba(0,0,0,0.4); */
-    clip-path: inset(-15px -15px -15px);
-}
-
-.item-regua {
-    width: 20%;
-    text-align: center;
 }
 
 .sensoresBox {
