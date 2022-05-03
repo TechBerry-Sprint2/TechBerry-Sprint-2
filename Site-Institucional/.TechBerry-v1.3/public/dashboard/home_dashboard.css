@@ -15,16 +15,12 @@
     align-items: center;
 }
 
-.principal1 h1 {
-    font-size: 100px;
-}
-
 .nome_estufa {
     color: white;
     background-color: #E3101F;
     border-radius: 24px 0px 0px 24px ;
     font-weight: bold;
-    font-size: xx-large;
+    font-size: 64px;
     width: 30%;
     height: 100%;
     display: flex;

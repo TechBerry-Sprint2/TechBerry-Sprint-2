@@ -182,6 +182,28 @@ a {
     width: 128px;
 }
 
+.cadastro_botao:hover {
+    animation: pulsate_cad 0.75s ease-in-out;
+}
+
+@keyframes pulsate_cad {
+    0% {
+        box-shadow: 0 0 15px rgb(215, 215, 215),
+            0 0 15px rgb(215, 215, 215);
+    }
+}
+
+.login_botao:hover {
+    animation: pulsate_log 0.75s ease-in-out;
+}
+
+@keyframes pulsate_log {
+    0% {
+        box-shadow: 0 0 15px #c50e0e,
+            0 0 15px #c50e0e;
+    }
+}
+
 /* FOOTER - COMEÇO */
 
 .footer{
