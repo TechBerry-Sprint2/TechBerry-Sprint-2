@@ -8,6 +8,7 @@ body {
 .janela {
     display: flex;
     flex-direction: row;
+    height: 100%;
 
 }
 
@@ -24,10 +25,15 @@ body {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
     clip-path: inset(0px -15px 0px 0px);
     width: 17vw;
-    height: 100vh;
+    height: 100%;
     padding: 32px;
     background-color: #B31C45;
     position: fixed;
+    overflow-y: scroll;
+}
+
+.esquerda::-webkit-scrollbar {
+    width: 0px;
 }
 
 details summary {

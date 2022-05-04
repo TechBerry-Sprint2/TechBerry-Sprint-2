@@ -24,7 +24,7 @@
 
                 <ul class="navBar">
                     <li>
-                        <a href="/">
+                        <a href="index.html">
                             Home
                         </a>
                     </li>
@@ -72,47 +72,46 @@
 
                     <div class="boxes_cadastro">
                         <div class="box_cadastro">
+                            Nome
                             <div class="campo">
-                                Nome
                                 <input id="nome_input" class="ipt" type="text" placeholder="Nome Sobrenome">
+                                <span class="msg_erro"></span>
                             </div>
+                            Email
                             <div class="campo">
-                                Email
                                 <input id="email_input" class="ipt" type="text" placeholder="exemplo@gmail.com">
-                                <span id="erroEmail"
-                                    style="font-size: 14px; padding-bottom: 16px; text-align: center; font-weight: 300; color: red; width: 532px;"></span>
+                                <span id="erroEmail" class="msg_erro"></span>
                             </div>
+                            CNPJ
                             <div class="campo">
-                                CNPJ
                                 <input id="cnpj_input" class="ipt" type="text" placeholder="00.000.000/0001-00">
-                                <span id="erroCNPJ"
-                                    style="font-size: 14px; padding-bottom: 16px; text-align: center; font-weight: 300; color: red; width: 532px;"></span>
+                                <span id="erroCNPJ" class="msg_erro"></span>
                             </div>
                         </div>
 
                         <div class="linha"></div>
 
                         <div class="box_cadastro">
+                            Telefone
                             <div class="campo">
-                                Telefone
                                 <input id="telefone_input" type="text" class="ipt" placeholder="(99) 99999-9999">
-                                <span id="erroTelefone" style="font-size: 14px; padding-bottom: 16px; text-align: center; font-weight: 300; color: red; width: 532px;"></span>
+                                <span id="erroTelefone" class="msg_erro"></span>
                             </div>
+                            Senha
                             <div class="campo">
-                                Senha
                                 <input id="senha_input" class="ipt" type="password" placeholder="**********">
+                                <span></span>
                             </div>
+                            Confirmar Senha
                             <div class="campo">
-                                Confirmar Senha
                                 <input id="confirmacao_senha_input" class="ipt" type="password"
                                     placeholder="**********">
-                                <span id="erroSenha"
-                                    style="font-size: 14px; padding-bottom: 16px; text-align: center; font-weight: 300; color: red; width: 532px;"></span>
+                                <span id="erroSenha" class="msg_erro"></span>
                             </div>
                         </div>
                     </div>
+                    <span id="mensagem_erro" class="msg_erro"></span>
 
-                    <span id="mensagem_erro" style="font-size: 16px; padding-bottom: 16px; text-align: center;"></span>
 
 
                     <div class="fim_cadastro">
@@ -145,46 +144,45 @@
         erroSenha.innerHTML = '';
 
         if (nomeVar == "" || cnpjVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || telefoneVar == "") {
-            mensagem_erro.innerHTML += 'Preencha todos os campos!<br>';
+            mensagem_erro.innerHTML += 'Preencha todos os campos!';
             return false;
         }
 
         if (emailVar.indexOf("@") == -1 || emailVar.startsWith("@") == true || emailVar.endsWith("@") == true || (emailVar.endsWith(".com") == false && emailVar.endsWith(".school") == false && emailVar.endsWith(".com.br") == false)) {
-            erroEmail.innerHTML += 'Ops, e-mail inválido!<br>';
+            erroEmail.innerHTML += 'Ops, e-mail inválido!';
             return false;
         }
 
         if(cnpjVar.length != 18){
-            erroCNPJ.innerHTML += 'Ops, CNPJ inválido!<br>CNPJ deve ter 18 caracteres';
+            erroCNPJ.innerHTML += 'Ops, CNPJ inválido! CNPJ deve ter 18 caracteres.';
             return false;
         }else if (cnpjVar[2] != '.') {
-            erroCNPJ.innerHTML += 'Ops, CNPJ inválido!<br>Erro de formatação do CNPJ';
+            erroCNPJ.innerHTML += 'Ops, CNPJ inválido! Erro de formatação do CNPJ.';
             return false;
         } else if (cnpjVar[6] != '.') {
-            erroCNPJ.innerHTML += 'Ops, CNPJ inválido!<br>Erro de formatação do CNPJ';
+            erroCNPJ.innerHTML += 'Ops, CNPJ inválido! Erro de formatação do CNPJ.';
             return false;
         } else if (cnpjVar[10] != '/') {
-            erroCNPJ.innerHTML += 'Ops, CNPJ inválido!<br>Erro de formatação do CNPJ';
+            erroCNPJ.innerHTML += 'Ops, CNPJ inválido! Erro de formatação do CNPJ.';
             return false;
         } else if (cnpjVar[15] != '-') {
-            erroCNPJ.innerHTML += 'Ops, CNPJ inválido!<br>Erro de formatação do CNPJ';
+            erroCNPJ.innerHTML += 'Ops, CNPJ inválido! Erro de formatação do CNPJ.';
             return false;
         }
 
         if (cnpjVar.length != 18) {
-            erroCNPJ.innerHTML += 'O CNPJ deve ter 18 dígitos, incluindo caractéres especiais!<br>';
+            erroCNPJ.innerHTML += 'O CNPJ deve ter 18 dígitos, incluindo caractéres especiais!';
             return false;
 
         }
 
         if (telefoneVar.length < 8 || telefoneVar.length > 15) {
-            erroTelefone.innerHTML += 'O Telefone deve ter no mínimo 8 dígitos e no máximo 15 dígitos, incluindo caractéres especiais.<br>';
+            erroTelefone.innerHTML += 'O Telefone deve ter no mínimo 8 dígitos e no máximo 15 dígitos, incluindo caractéres especiais.';
             return false;
-
-        }
+        } 
 
         if (senhaVar != confirmacaoSenhaVar) {
-            erroSenha.innerHTML += 'As senhas inseridas devem ser iguais para prosseguir!<br>';
+            erroSenha.innerHTML += 'As senhas inseridas devem ser iguais para prosseguir!';
             return false;
 
         }

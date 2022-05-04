@@ -65,6 +65,7 @@
                     <img class="icon-nav" src="../imgs/exit-icon.png" alt="">
                     <span>Sair</span>
                 </div>
+    
             </div>
         </div>
 
@@ -105,55 +106,88 @@
                 </div>
             </div>
 
-
-
             <div class="principais">
                 <div class="principal1">
-                    <h1 class="nome_estufa">Estufa 1</h1>
-                    <div class="informacoes_tudo">
+                    <span class="nome_estufa">Estufa 1</span>
 
                         <div class="informacoes info1">
                             <div class="box1">
-                                <span class="titulo">Temperatura Atual</span>
-                                <div class="parte1_temp">
-                                    <span>Status:</span>
-                                    <div class="status ideal"></div> <span>Ideal</span>
-                                </div>
+                                <span class="titulo">Temperatura Atual: <span class="valor_tempReal">19.7°C</span> </span>
                                 <div class="parte2_temp">
                                     <canvas id="chart_tempReal"></canvas>
-                                    <span class="valor_tempReal">19.7°C</span>
+                                    <div class="parte1_temp">
+                                        <span>Status:</span>
+                                        <div class="status ideal"></div> <span>Ideal</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="box1">
-                                <span class="titulo">Umidade Atual</span>
-                                <div class="parte1_umid">
-                                    <span>Status:</span>
-                                    <div class="status alerta-quente"></div> <span>Alerta</span>
-                                </div>
+                                <span class="titulo">Umidade Atual: <span class="valor_umidReal">66%</span></span>
                                 <div class="parte2_umid">
                                     <canvas id="chart_umidReal"></canvas>
-                                    <span class="valor_umidReal">66%</span>
+                                    <div class="parte1_umid">
+                                        <span>Status:</span>
+                                        <div class="status alerta-quente"></div> <span>Alerta</span>
+                                    </div>
                                 </div>
-                            </div>
+                            </div>                         
+                                <div class="box2">
+                                    <div class="kpi1">
+                                        <h3>Quantidade Sensores</h3>
+                                        <div class="kpi_qtd_sensor">
+                                            <h4 style="color: white;">4</h4>
+                                        </div>
+                                    </div>
+                                    <div class="kpi1">
+                                        <h3>Quantidade Alertas</h3>
+                                        <div class="kpi_qtd_sensor">
+                                            <h4 style="color: white;">4</h4>
+                                        </div>
+                                    </div>
+                                </div>                           
                         </div>
+                </div>
+            </div>
+            <div class="principais">
+                <div class="principal1">
+                    <span class="nome_estufa">Estufa 2</span>
 
-                        <div class="informacoes info2">
-                            <div class="box2">
-                                <div class="kpi1">
-                                    <h2>Quantidade Sensores</h2>
-                                    <div class="kpi_qtd_sensor">
-                                        <h4 style="color: white;">4</h4>
-                                    </div>
-                                </div>
-                                <div class="kpi1">
-                                    <h2>Quantidade Alertas</h2>
-                                    <div class="kpi_qtd_sensor">
-                                        <h4 style="color: white;">4</h4>
+                        <div class="informacoes info1">
+                            <div class="box1">
+                                <span class="titulo">Temperatura Atual: <span class="valor_tempReal">19.7°C</span> </span>
+                                <div class="parte2_temp">
+                                    <canvas id="chart_tempReal2"></canvas>
+                                    <div class="parte1_temp">
+                                        <span>Status:</span>
+                                        <div class="status ideal"></div> <span>Ideal</span>
                                     </div>
                                 </div>
                             </div>
+                            <div class="box1">
+                                <span class="titulo">Umidade Atual: <span class="valor_umidReal">70%</span></span>
+                                <div class="parte2_umid">
+                                    <canvas id="chart_umidReal2"></canvas>
+                                    <div class="parte1_umid">
+                                        <span>Status:</span>
+                                        <div class="status alerta-quente"></div> <span>Alerta</span>
+                                    </div>
+                                </div>
+                            </div>                         
+                                <div class="box2">
+                                    <div class="kpi1">
+                                        <h3>Quantidade Sensores</h3>
+                                        <div class="kpi_qtd_sensor">
+                                            <h4 style="color: white;">4</h4>
+                                        </div>
+                                    </div>
+                                    <div class="kpi1">
+                                        <h3>Quantidade Alertas</h3>
+                                        <div class="kpi_qtd_sensor">
+                                            <h4 style="color: white;">4</h4>
+                                        </div>
+                                    </div>
+                                </div>                           
                         </div>
-                    </div>
                 </div>
             </div>
             
@@ -173,73 +207,6 @@
 
     const data_tempReal = {
         labels: [
-            'Temperatura'
-        ],
-        datasets: [{
-            label: 'Temperatura',
-            data: [19.7, 40],
-            backgroundColor: [
-                '#9ccc65',
-                'whitesmoke'
-            ],
-            hoverOffset: 4
-        }]
-    };
-    const config_tempReal = {
-        type: 'doughnut',
-        data: data_tempReal,
-        options: { circumference: 180, rotation: 270 }
-    };
-
-    const chart_tempReal = new Chart(
-        document.getElementById('chart_tempReal'),
-        config_tempReal
-    );
-
-    const data_umidReal = {
-        labels: [
-            'Umidade Atual em %'
-        ],
-        datasets: [{
-            label: 'My First Dataset',
-            data: [50, 50],
-            backgroundColor: [
-                '#00f2ff',
-                'whitesmoke'
-            ],
-            hoverOffset: 4
-        }]
-    };
-
-    // GRÁFICO UMIDADE (ESTUFA 1) - UMIDADE EM TEMPO REAL
-
-    const data_umidReal= {
-        labels: [
-            'Umidade'
-        ],
-        datasets: [{
-            label: 'Umidade',
-            data: [66, 34],
-            backgroundColor: [
-                '#e0ce2b',
-                'whitesmoke'
-            ],
-            hoverOffset: 4
-        }]
-    };
-    const config_umidReal= {
-        type: 'doughnut',
-        data: data_umidReal
-        options: { circumference: 180, rotation: 270 }
-    };
-
-    const chart_umidReal= new Chart(
-        document.getElementById('chart_umidReal2),
-        config_umidReal    );
-
-
-    const data_tempReal = {
-        labels: [
             'Temperatura Atual em °C'
         ],
         datasets: [{
@@ -252,19 +219,19 @@
             hoverOffset: 4
         }]
     };
-    const config_tempReal2 = {
+    const config_tempReal = {
         type: 'doughnut',
-        data: data_tempReal2,
-        options: { circumference: 180, rotation: 270 }
+        data: data_tempReal,
+        options: { circumference: 180, rotation: 270  }
     };
 
-    const data_umidReal2 = {
+    const data_umidReal = {
         labels: [
             'Umidade Atual em %'
         ],
         datasets: [{
             label: 'My First Dataset',
-            data: [50, 50],
+            data: [66, 34],
             backgroundColor: [
                 '#00f2ff',
                 'whitesmoke'
@@ -273,82 +240,20 @@
         }]
     };
 
-    const config_umidReal2 = {
+    const config_umidReal = {
         type: 'doughnut',
-        data: data_umidReal2,
-        options: { circumference: 180, rotation: 270 }
-    };
-
-   // GRÁFICO TEMPERATURA (ESTUFA 2) - TEMPERATURA EM TEMPO REAL
-
-   const data_tempReal = {
-        labels: [
-            'Temperatura'
-        ],
-        datasets: [{
-            label: 'Temperatura',
-            data: [19.7, 40],
-            backgroundColor: [
-                '#9ccc65',
-                'whitesmoke'
-            ],
-            hoverOffset: 4
-        }]
-    };
-    const config_tempReal = {
-        type: 'doughnut',
-        data: data_tempReal,
-        options: { circumference: 180, rotation: 270 }
+        data: data_umidReal,
+        options: { circumference: 180, rotation: 270}
     };
 
     const chart_tempReal = new Chart(
         document.getElementById('chart_tempReal'),
         config_tempReal
     );
-
-    const data_umidReal = {
-        labels: [
-            'Umidade Atual em %'
-        ],
-        datasets: [{
-            label: 'My First Dataset',
-            data: [50, 50],
-            backgroundColor: [
-                '#00f2ff',
-                'whitesmoke'
-            ],
-            hoverOffset: 4
-        }]
-    };
-
-    // GRÁFICO UMIDADE (ESTUFA 1) - UMIDADE EM TEMPO REAL
-
-    const data_umidReal = {
-        labels: [
-            'Umidade'
-        ],
-        datasets: [{
-            label: 'Umidade',
-            data: [66, 34],
-            backgroundColor: [
-                '#e0ce2b',
-                'whitesmoke'
-            ],
-            hoverOffset: 4
-        }]
-    };
-    const config_umidReal = {
-        type: 'doughnut',
-        data: data_umidReal,
-        options: { circumference: 180, rotation: 270 }
-    };
-
     const chart_umidReal = new Chart(
         document.getElementById('chart_umidReal'),
         config_umidReal
     );
-
-
     const data_tempReal2 = {
         labels: [
             'Temperatura Atual em °C'
@@ -366,7 +271,7 @@
     const config_tempReal2 = {
         type: 'doughnut',
         data: data_tempReal2,
-        options: { circumference: 180, rotation: 270 }
+        options: { circumference: 180, rotation: 270}
     };
 
     const data_umidReal2 = {
@@ -375,7 +280,7 @@
         ],
         datasets: [{
             label: 'My First Dataset',
-            data: [50, 50],
+            data: [70, 30],
             backgroundColor: [
                 '#00f2ff',
                 'whitesmoke'
@@ -387,8 +292,21 @@
     const config_umidReal2 = {
         type: 'doughnut',
         data: data_umidReal2,
-        options: { circumference: 180, rotation: 270 }
+        options: { circumference: 180, rotation: 270}
     };
+
+    const chart_tempReal2 = new Chart(
+        document.getElementById('chart_tempReal2'),
+        config_tempReal2
+    );
+    const chart_umidReal2 = new Chart(
+        document.getElementById('chart_umidReal2'),
+        config_umidReal2
+    );
+
+   // GRÁFICO TEMPERATURA (ESTUFA 2) - TEMPERATURA EM TEMPO REAL
+
+
 
     // function atualizacaoPeriodica() {
     //     obterdados(1);

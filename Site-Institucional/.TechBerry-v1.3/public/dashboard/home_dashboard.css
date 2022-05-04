@@ -3,50 +3,40 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-top: 30px;
 }
 
 .principal1 {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
     border-radius: 24px;
     width: 100%;
-    height: 620px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.nome_estufa {
-    color: white;
-    background-color: #E3101F;
-    border-radius: 24px 0px 0px 24px ;
-    font-weight: bold;
-    font-size: 64px;
-    width: 30%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-
-.informacoes_tudo {
     display: flex;
     flex-direction: column;
-    height: 60%;
-    width: 60%;
+    align-items: top;
 }
+
+
+
+.nome_estufa {
+    padding: 24px 24px 24px 24px;
+    color: white;
+    background-color: #E3101F;
+    border-radius: 24px 24px 0px 0px;
+    font-weight: bold;
+    font-size: x-large;
+    width: auto;
+    height: auto;
+}
+
 
 .informacoes {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-evenly;
 }
 
-.info1 {
- 
-}
 
-.info2 {
-  
-}
 
 
 
@@ -54,6 +44,8 @@
     padding: 12px 24px 12px 24px;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
     border-radius: 24px;
+    margin-left: 30px;
+    text-align: center;
 }
 
 .box1 canvas {
@@ -76,9 +68,9 @@
     border-radius: 24px;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
 }
-
 .box2 {
-
+    margin-left: 30px;
+    text-align: center;
 }
 
 .kpi1{
@@ -87,6 +79,7 @@
     padding: 8px;
     margin: 30px;
     border-radius: 24px;
+    justify-content: space-between;
 }
 
 .kpi_qtd_sensor{
@@ -136,18 +129,6 @@
     height: 16px;
 }
 
-::-webkit-scrollbar-track {
-    background-color: #fddfdf;
-}
-
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #cf0b0b;
-    border-radius: 16px;
-}
 .parte1_temp, .parte1_umid {
     display: flex;
     flex-direction: row;

@@ -24,7 +24,7 @@
 
                 <ul class="navBar">
                     <li>
-                        <a href="/">
+                        <a href="index.html">
                             Home
                         </a>
                     </li>
@@ -68,15 +68,17 @@
 
                 <div class="login">
                     <h2>Login</h2>
-                    <div class="campo">
+                    <div class="box_login">
                         Email
-                        <input id="email_input" class="ipt" type="text" placeholder="exemplo@gmail.com">
-                    </div>
-                    <div class="campo">
+                        <div class="campo">
+                            <input id="email_input" class="ipt" type="text" placeholder="exemplo@gmail.com">
+                        </div>
                         Senha
-                        <input id="senha_input" class="ipt" type="password" placeholder="**********">
+                        <div class="campo">
+                            <input id="senha_input" class="ipt" type="password" placeholder="**********">
+                        </div>
                     </div>
-                    <span id="mensagem_erro"></span>
+                    <span id="mensagem_erro" class="msg_erro"></span>
 
                     <button onclick="entrar()" class="btn_acessar">Acessar</button>
                     <h6>Sem registro? <a href="cadastro.html">Criar conta</a></h6>
@@ -112,7 +114,7 @@
             setInterval(sumirMensagem, 5000)
         }
 
-        if (emailVar.indexOf("@") == -1 || emailVar.startsWith("@") == true || emailVar.endsWith("@") == true || (emailVar.endsWith(".com") == false && emailVar. endsWith(".school") == false && emailVar.endsWith(".com.br") == false)) {
+        if (emailVar.indexOf("@") == -1 || emailVar.startsWith("@") == true || emailVar.endsWith("@") == true || (emailVar.endsWith(".com") == false && emailVar.endsWith(".school") == false && emailVar.endsWith(".com.br") == false)) {
             mensagem_erro.style.display = 'block';
             mensagem_erro.innerHTML = "Ops, e-mail inválido! Verifique e tente novamente.";
             // finalizarAguardar();
