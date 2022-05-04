@@ -250,6 +250,10 @@ a:hover {
     color: white;
 }
 
+.vazio{
+    background-color: whitesmoke;
+}
+
 /* RÉGUA - FIM */
 
 /* GRÁFICOS - COMEÇO */
@@ -258,3 +262,15 @@ canvas {
 }
 
 /* GRÁFICOS - FIM */
+
+::-webkit-scrollbar-track {
+    background-color: whitesmoke;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+  
+::-webkit-scrollbar-thumb {
+    background: #E3101F;
+}

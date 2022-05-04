@@ -292,7 +292,7 @@ details>summary {
     margin: 5px;
 }
 
-.principal1 .box3 canvas {
+.box3 canvas {
     width: 18vw;
     position: relative;
 }
@@ -302,8 +302,6 @@ details>summary {
     position: absolute;
     z-index: 1000;
     margin-top: -65px;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
     text-align: center;
 }
 
@@ -312,7 +310,41 @@ details>summary {
     position: absolute;
     z-index: 1000;
     margin-top: -65px;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
+    text-align: center;8
 }
+
+.principal2 {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.box4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    height: fit-content;
+    padding: 24px 24px 12px 24px;
+    border-radius: 24px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+}
+
+.boxes_sensores {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin-top: 12px;
+}
+
+.box4 .boxes_sensores .box3 {
+    width: 100%;
+    padding: 12px 0px 12px 0px;
+    margin-bottom: 12px;
+
+}
+
+
