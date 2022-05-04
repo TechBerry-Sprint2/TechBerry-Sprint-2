@@ -112,9 +112,11 @@
 
                         <div class="informacoes info1">
                             <div class="box1">
-                                <span class="titulo">Temperatura Atual: <span class="valor_tempReal">19.7°C</span> </span>
-                                <div class="parte2_temp">
-                                    <canvas id="chart_tempReal"></canvas>
+                                <span class="titulo">Temperatura Atual: <span id="spT1" class="valor_tempReal"></span> </span>
+                                <div id="parte2_temp" class="parte2_temp">
+                                    <div id="divPai1">
+                                        <canvas id="chart_tempReal"></canvas>
+                                    </div>
                                     <div class="parte1_temp">
                                         <span>Status:</span>
                                         <div class="status ideal"></div> <span>Ideal</span>
@@ -122,9 +124,11 @@
                                 </div>
                             </div>
                             <div class="box1">
-                                <span class="titulo">Umidade Atual: <span class="valor_umidReal">66%</span></span>
+                                <span class="titulo">Umidade Atual: <span id="spU1" class="valor_umidReal"></span></span>
                                 <div class="parte2_umid">
-                                    <canvas id="chart_umidReal"></canvas>
+                                    <div id="divPai2">
+                                        <canvas id="chart_umidReal"></canvas>
+                                    </div>
                                     <div class="parte1_umid">
                                         <span>Status:</span>
                                         <div class="status alerta-quente"></div> <span>Alerta</span>
@@ -154,7 +158,7 @@
 
                         <div class="informacoes info1">
                             <div class="box1">
-                                <span class="titulo">Temperatura Atual: <span class="valor_tempReal">19.7°C</span> </span>
+                                <span class="titulo">Temperatura Atual: <span id="spT2" class="valor_tempReal"></span> </span>
                                 <div class="parte2_temp">
                                     <canvas id="chart_tempReal2"></canvas>
                                     <div class="parte1_temp">
@@ -164,7 +168,7 @@
                                 </div>
                             </div>
                             <div class="box1">
-                                <span class="titulo">Umidade Atual: <span class="valor_umidReal">70%</span></span>
+                                <span class="titulo">Umidade Atual: <span id="spU2" class="valor_umidReal"></span>
                                 <div class="parte2_umid">
                                     <canvas id="chart_umidReal2"></canvas>
                                     <div class="parte1_umid">
@@ -199,19 +203,77 @@
 </body>
 
 <script>
-
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
+    var estufa1temp = 19.2;
+    var estufa2temp = 19.5;
+
+    var estufa1umi = 66;
+    var estufa2umi = 70;
 
     // GRÁFICO TEMPERATURA (ESTUFA 1) - TEMPERATURA EM TEMPO REAL
+    
+	setInterval(function(){
+        g1Temp = document.getElementById('chart_tempReal');
+        g1Temp.remove();
+        novoG1Temp = document.createElement('canvas');
+        novoG1Temp.setAttribute('id', 'chart_tempReal');
+        divPai1.appendChild(novoG1Temp);
 
-    const data_tempReal = {
+        g1Umi = document.getElementById('chart_umidReal');
+        g1Umi.remove();
+        novoG1Umid = document.createElement('canvas');
+        novoG1Umid.setAttribute('id', 'chart_umidReal');
+        divPai2.appendChild(novoG1Umid);
+
+    	var numeroRandomico = Math.floor((Math.random() * 100) + 1);
+    	if (numeroRandomico % 2 == 0) {
+  			// Se o número for par, ele diminuirá o valor
+            
+            temperatura = Math.random()*(estufa1temp-(estufa1temp+0.2))+estufa1temp;
+			estufa1temp = temperatura;
+			spT1.innerHTML = `${temperatura.toFixed(1)}ºC`;
+            console.log(temperatura);
+
+            temperatura = Math.random()*(estufa2temp-(estufa2temp+0.2))+estufa2temp;
+			estufa2temp = temperatura;
+			spT2.innerHTML = `${temperatura.toFixed(1)}ºC`;
+            console.log(temperatura);
+
+            umidade = Math.random()*(estufa1umi-(estufa1umi+0.2))+estufa1umi;
+            estufa1umi = umidade;
+            spU1.innerHTML = `${umidade.toFixed(1)}%`;
+
+            umidade = Math.random()*(estufa2umi-(estufa2umi+0.2))+estufa2umi;
+            estufa2umi = umidade;
+            spU2.innerHTML = `${umidade.toFixed(1)}%`;
+  		} else {
+  			// Se o número for ímpar, ele aumentará o valor
+     
+            temperatura = Math.random()*(estufa1temp-(estufa1temp-0.2))+estufa1temp;
+			estufa1temp = temperatura;
+			spT1.innerHTML = `${temperatura.toFixed(1)}ºC`;
+
+            temperatura = Math.random()*(estufa2temp-(estufa2temp-0.2))+estufa2temp;
+			estufa2temp = temperatura;
+			spT2.innerHTML = `${temperatura.toFixed(1)}ºC`;
+
+            umidade = Math.random()*(estufa1umi-(estufa1umi-0.2))+estufa1umi;
+            estufa1umi = umidade;
+            spU1.innerHTML = `${umidade.toFixed(1)}%`;
+
+            umidade = Math.random()*(estufa2umi-(estufa2umi-0.2))+estufa2umi;
+            estufa2umi = umidade;
+            spU2.innerHTML = `${umidade.toFixed(1)}%`;
+		}
+
+        var data_tempReal = {
         labels: [
             'Temperatura Atual em °C'
         ],
         datasets: [{
-            label: 'My First Dataset',
-            data: [50, 50],
+            labels: [estufa1temp, 26.7],
+            data: [estufa1temp.toFixed(1), (26.7-estufa1temp)],
             backgroundColor: [
                 '#9ccc65',
                 'whitesmoke'
@@ -219,19 +281,23 @@
             hoverOffset: 4
         }]
     };
-    const config_tempReal = {
+    var config_tempReal = {
         type: 'doughnut',
         data: data_tempReal,
-        options: { circumference: 180, rotation: 270  }
+        options: { 
+                    circumference: 180,
+                    rotation: 270,
+                    animation: 0
+                }
     };
 
-    const data_umidReal = {
+    var data_umidReal = {
         labels: [
             'Umidade Atual em %'
         ],
         datasets: [{
             label: 'My First Dataset',
-            data: [66, 34],
+            data: [estufa1umi.toFixed(1), (26.7-estufa1umi)],
             backgroundColor: [
                 '#00f2ff',
                 'whitesmoke'
@@ -240,27 +306,27 @@
         }]
     };
 
-    const config_umidReal = {
+    var config_umidReal = {
         type: 'doughnut',
         data: data_umidReal,
-        options: { circumference: 180, rotation: 270}
+        options: { circumference: 180, rotation: 270, animation: 0}
     };
 
-    const chart_tempReal = new Chart(
+    var chart_tempReal = new Chart(
         document.getElementById('chart_tempReal'),
         config_tempReal
     );
-    const chart_umidReal = new Chart(
+    var chart_umidReal = new Chart(
         document.getElementById('chart_umidReal'),
         config_umidReal
     );
-    const data_tempReal2 = {
+    var data_tempReal2 = {
         labels: [
             'Temperatura Atual em °C'
         ],
         datasets: [{
             label: 'My First Dataset',
-            data: [50, 50],
+            data: [estufa2temp.toFixed(1), (26.7-estufa2temp)],
             backgroundColor: [
                 '#9ccc65',
                 'whitesmoke'
@@ -268,19 +334,19 @@
             hoverOffset: 4
         }]
     };
-    const config_tempReal2 = {
+    var config_tempReal2 = {
         type: 'doughnut',
         data: data_tempReal2,
         options: { circumference: 180, rotation: 270}
     };
 
-    const data_umidReal2 = {
+    var data_umidReal2 = {
         labels: [
             'Umidade Atual em %'
         ],
         datasets: [{
             label: 'My First Dataset',
-            data: [70, 30],
+            data: [estufa2umi.toFixed(1), (76-estufa2umi)],
             backgroundColor: [
                 '#00f2ff',
                 'whitesmoke'
@@ -289,21 +355,24 @@
         }]
     };
 
-    const config_umidReal2 = {
+    var config_umidReal2 = {
         type: 'doughnut',
         data: data_umidReal2,
         options: { circumference: 180, rotation: 270}
     };
 
-    const chart_tempReal2 = new Chart(
+    var chart_tempReal2 = new Chart(
         document.getElementById('chart_tempReal2'),
         config_tempReal2
     );
-    const chart_umidReal2 = new Chart(
+    var chart_umidReal2 = new Chart(
         document.getElementById('chart_umidReal2'),
         config_umidReal2
     );
 
+	}, 1000);
+
+    
    // GRÁFICO TEMPERATURA (ESTUFA 2) - TEMPERATURA EM TEMPO REAL
 
 
