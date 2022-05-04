@@ -302,6 +302,8 @@ details>summary {
     position: absolute;
     z-index: 1000;
     margin-top: -65px;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
     text-align: center;
 }
 
@@ -310,14 +312,32 @@ details>summary {
     position: absolute;
     z-index: 1000;
     margin-top: -65px;
-    text-align: center;8
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .principal2 {
     width: 48%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: flex-start;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    border-radius: 24px;
+}
+
+.nome_sensor {
+    display: flex;
+    justify-content: center;
+    font-size: large;
+    font-weight: bold;
+    background-color: #E3101F;
+    color: white;
+    border-radius: 24px 24px 0px 0px;
+    width: 100%;
+    padding-top: 12px;
+    padding-bottom: 12px;
 }
 
 .box4 {
@@ -325,11 +345,9 @@ details>summary {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 95%;
+    width: 92%;
     height: fit-content;
-    padding: 24px 24px 12px 24px;
-    border-radius: 24px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+    padding: 12px;
 }
 
 .boxes_sensores {
