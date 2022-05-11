@@ -5,7 +5,7 @@ CREATE DATABASE TechBerry;
 USE TechBerry;
 
 CREATE TABLE cliente(
-    idCliente INT PRIMARY KEY AUTO_INCREMENT,
+    idCliente INT PRIMARY KEY IDENTITY(1,1),
     nomeCliente VARCHAR(45) NOT NULL,
     CNPJ CHAR(18) NOT NULL UNIQUE,
     telefoneCliente CHAR(15) NOT NULL UNIQUE,
@@ -14,29 +14,29 @@ CREATE TABLE cliente(
 );
 
 CREATE TABLE estufa(
-    idEstufa INT PRIMARY KEY AUTO_INCREMENT,
+    idEstufa INT PRIMARY KEY IDENTITY(5000,1),
     apelidoEstufa VARCHAR(45) NOT NULL,
     enderecoEstufa VARCHAR(96) NOT NULL,
     idCliente INT NOT NULL,
     FOREIGN KEY(idCliente) REFERENCES cliente(idCliente)
-) AUTO_INCREMENT = 5000;
+);
 
 CREATE TABLE sensor(
-    idSensor INT PRIMARY KEY AUTO_INCREMENT,
+    idSensor INT PRIMARY KEY IDENTITY(2000,1),
     modelo VARCHAR(45) NOT NULL,
     serialNumber VARCHAR(45) NOT NULL,
     idEstufa INT NOT NULL,
     FOREIGN KEY(idEstufa) REFERENCES estufa(idEstufa)
-) AUTO_INCREMENT = 2000;
+);
 
 CREATE TABLE medida(
-    idMedida INT PRIMARY KEY AUTO_INCREMENT,
+    idMedida INT PRIMARY KEY IDENTITY(10000,1),
     temperaturaRegistrada FLOAT NOT NULL,
     umidadeRegistrada FLOAT CHECK(umidadeRegistrada < 101 AND umidadeRegistrada > -1) NOT NULL,
     horarioRegistro DATETIME NOT NULL,
     idSensor INT NOT NULL,
     FOREIGN KEY(idSensor) REFERENCES sensor(idSensor)
-) AUTO_INCREMENT = 10000;
+);
 
 INSERT INTO cliente VALUES
 (NULL, 'Amaral da Silva Amado', '32.501.780/0001-40', '(11) 97895-2145', 'amaral@sptech.school', '12345678'),
