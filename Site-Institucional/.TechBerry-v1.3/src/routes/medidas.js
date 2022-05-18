@@ -11,6 +11,10 @@ router.post("/pegarSensores", function (req, res) {
     console.log('Chegou na rota Sensores!')
     medidaController.pegarSensoresController(req, res);
 });
+router.post("/pegarMedida", function (req, res) {
+    console.log('Chegou na rota Medidas!')
+    medidaController.pegarMedidaController(req, res);
+});
 
 router.get("/tempo-real/:idAquario", function (req, res) {
     medidaController.buscarMedidasEmTempoReal(req, res);

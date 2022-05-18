@@ -258,6 +258,9 @@
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
     var idEstufa = 0;
     var idSensor = 0;
+    var idMedida = 0;
+    var tempEst1 = 0;
+    var umidEst1 = 0;
     // setInterval(()=> {
     fetch("/medidas/pegarEstufas", {
         method: 'POST',
@@ -272,10 +275,12 @@
             resposta.json().then(json => {
                 console.log(json[0].idEstufa);
                 idEstufa = json[0].idEstufa;
+                buscarSensor();
             })
         }
     })
-
+function buscarSensor() {
+    
     fetch("/medidas/pegarSensores", {
         method: 'POST',
         headers: {
@@ -289,9 +294,37 @@
             resposta.json().then(json => {
                 console.log(json[0].idSensor);
                 idSensor = json[0].idSensor;
+                setInterval(() => {
+                    buscarMedida();       
+                }, 5000);
             })
         }
     })
+}
+function buscarMedida() {
+    
+    fetch("/medidas/pegarMedida", {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idSensor: idSensor
+        })
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            resposta.json().then(json => {
+                console.log(json[0].idMedida);
+                idMedida = json[0].idMedida;
+                console.log(json[0].temperaturaRegistrada);
+                tempEst1 = json[0].temperaturaRegistrada;
+                console.log(json[0].umidadeRegistrada);
+                umidEst1 = json[0].umidadeRegistrada;
+
+            })
+        }
+    })
+}
 
     // }, 5000);
 

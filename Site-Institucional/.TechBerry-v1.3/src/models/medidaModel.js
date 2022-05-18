@@ -8,10 +8,18 @@ function pegarEstufasModel(idCliente) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-function pegarSensoresModel(idEstufa){
+function pegarSensoresModel(idEstufa) {
     instrucaoSql = `select * from
                     sensor where 
                      sensor.idEstufa = ${idEstufa}`
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+function pegarMedidaModel(idSensor) {
+    instrucaoSql = `select * from
+                    medida where 
+                    medida.idSensor = ${idSensor}
+                    order by idMedida desc`
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
@@ -31,5 +39,6 @@ function buscarMedidasEmTempoReal(idAquario) {
 module.exports = {
     pegarEstufasModel,
     pegarSensoresModel,
+    pegarMedidaModel,
     buscarMedidasEmTempoReal
 }
