@@ -256,183 +256,160 @@
 
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
-    var estufa1temp = 19.2;
-    var estufa2temp = 19.5;
-
-    var estufa1umi = 66;
-    var estufa2umi = 70;
-
-    // GRÁFICO TEMPERATURA (ESTUFA 1) - TEMPERATURA EM TEMPO REAL
-
-    setInterval(function () {
-        g1Temp = document.getElementById('chart_tempReal');
-        g1Temp.remove();
-        novoG1Temp = document.createElement('canvas');
-        novoG1Temp.setAttribute('id', 'chart_tempReal');
-        divPai1.appendChild(novoG1Temp);
-
-        g1Umi = document.getElementById('chart_umidReal');
-        g1Umi.remove();
-        novoG1Umid = document.createElement('canvas');
-        novoG1Umid.setAttribute('id', 'chart_umidReal');
-        divPai2.appendChild(novoG1Umid);
-
-        var numeroRandomico = Math.floor((Math.random() * 100) + 1);
-        if (numeroRandomico % 2 == 0) {
-            // Se o número for par, ele diminuirá o valor
-
-            temperatura = Math.random() * (estufa1temp - (estufa1temp + 0.2)) + estufa1temp;
-            estufa1temp = temperatura;
-            spT1.innerHTML = `${temperatura.toFixed(1)}ºC`;
-            console.log(temperatura);
-
-            temperatura = Math.random() * (estufa2temp - (estufa2temp + 0.2)) + estufa2temp;
-            estufa2temp = temperatura;
-            spT2.innerHTML = `${temperatura.toFixed(1)}ºC`;
-            console.log(temperatura);
-
-            umidade = Math.random() * (estufa1umi - (estufa1umi + 0.2)) + estufa1umi;
-            estufa1umi = umidade;
-            spU1.innerHTML = `${umidade.toFixed(1)}%`;
-
-            umidade = Math.random() * (estufa2umi - (estufa2umi + 0.2)) + estufa2umi;
-            estufa2umi = umidade;
-            spU2.innerHTML = `${umidade.toFixed(1)}%`;
-        } else {
-            // Se o número for ímpar, ele aumentará o valor
-
-            temperatura = Math.random() * (estufa1temp - (estufa1temp - 0.2)) + estufa1temp;
-            estufa1temp = temperatura;
-            spT1.innerHTML = `${temperatura.toFixed(1)}ºC`;
-
-            temperatura = Math.random() * (estufa2temp - (estufa2temp - 0.2)) + estufa2temp;
-            estufa2temp = temperatura;
-            spT2.innerHTML = `${temperatura.toFixed(1)}ºC`;
-
-            umidade = Math.random() * (estufa1umi - (estufa1umi - 0.2)) + estufa1umi;
-            estufa1umi = umidade;
-            spU1.innerHTML = `${umidade.toFixed(1)}%`;
-
-            umidade = Math.random() * (estufa2umi - (estufa2umi - 0.2)) + estufa2umi;
-            estufa2umi = umidade;
-            spU2.innerHTML = `${umidade.toFixed(1)}%`;
+    var idEstufa = 0;
+    var idSensor = 0;
+    // setInterval(()=> {
+    fetch("/medidas/pegarEstufas", {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idCliente: sessionStorage.ID_USUARIO
+        })
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            resposta.json().then(json => {
+                console.log(json[0].idEstufa);
+                idEstufa = json[0].idEstufa;
+            })
         }
+    })
 
-        var data_tempReal = {
-            labels: [
-                'Temperatura Atual em °C'
+    fetch("/medidas/pegarSensores", {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idEstufa: idEstufa
+        })
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            resposta.json().then(json => {
+                console.log(json[0].idSensor);
+                idSensor = json[0].idSensor;
+            })
+        }
+    })
+
+    // }, 5000);
+
+
+    var data_tempReal = {
+        labels: [
+            'Temperatura Atual em °C'
+        ],
+        datasets: [{
+            labels: [estufa1temp, 26.7],
+            data: [estufa1temp.toFixed(1), (26.7 - estufa1temp)],
+            backgroundColor: [
+                '#9ccc65',
+                'whitesmoke'
             ],
-            datasets: [{
-                labels: [estufa1temp, 26.7],
-                data: [estufa1temp.toFixed(1), (26.7 - estufa1temp)],
-                backgroundColor: [
-                    '#9ccc65',
-                    'whitesmoke'
-                ],
-                hoverOffset: 4
-            }]
-        };
-        var config_tempReal = {
-            type: 'doughnut',
-            data: data_tempReal,
-            options: {
-                circumference: 180,
-                rotation: 270,
-                animation: 0
-            }
-        };
+            hoverOffset: 4
+        }]
+    };
+    var config_tempReal = {
+        type: 'doughnut',
+        data: data_tempReal,
+        options: {
+            circumference: 180,
+            rotation: 270,
+            animation: 0
+        }
+    };
 
-        var data_umidReal = {
-            labels: [
-                'Umidade Atual em %'
+    var data_umidReal = {
+        labels: [
+            'Umidade Atual em %'
+        ],
+        datasets: [{
+            label: 'My First Dataset',
+            data: [estufa1umi.toFixed(1), (26.7 - estufa1umi)],
+            backgroundColor: [
+                '#e0ce2b',
+                'whitesmoke'
             ],
-            datasets: [{
-                label: 'My First Dataset',
-                data: [estufa1umi.toFixed(1), (26.7 - estufa1umi)],
-                backgroundColor: [
-                    '#e0ce2b',
-                    'whitesmoke'
-                ],
-                hoverOffset: 4
-            }]
-        };
+            hoverOffset: 4
+        }]
+    };
 
-        var config_umidReal = {
-            type: 'doughnut',
-            data: data_umidReal,
-            options: {
-                circumference: 180,
-                rotation: 270,
-                animation: 0
-            }
-        };
+    var config_umidReal = {
+        type: 'doughnut',
+        data: data_umidReal,
+        options: {
+            circumference: 180,
+            rotation: 270,
+            animation: 0
+        }
+    };
 
-        var chart_tempReal = new Chart(
-            document.getElementById('chart_tempReal'),
-            config_tempReal
-        );
-        var chart_umidReal = new Chart(
-            document.getElementById('chart_umidReal'),
-            config_umidReal
-        );
-        var data_tempReal2 = {
-            labels: [
-                'Temperatura Atual em °C'
+    var chart_tempReal = new Chart(
+        document.getElementById('chart_tempReal'),
+        config_tempReal
+    );
+    var chart_umidReal = new Chart(
+        document.getElementById('chart_umidReal'),
+        config_umidReal
+    );
+    var data_tempReal2 = {
+        labels: [
+            'Temperatura Atual em °C'
+        ],
+        datasets: [{
+            label: 'My First Dataset',
+            data: [estufa2temp.toFixed(1), (26.7 - estufa2temp)],
+            backgroundColor: [
+                '#9ccc65',
+                'whitesmoke'
             ],
-            datasets: [{
-                label: 'My First Dataset',
-                data: [estufa2temp.toFixed(1), (26.7 - estufa2temp)],
-                backgroundColor: [
-                    '#9ccc65',
-                    'whitesmoke'
-                ],
-                hoverOffset: 4
-            }]
-        };
-        var config_tempReal2 = {
-            type: 'doughnut',
-            data: data_tempReal2,
-            options: {
-                circumference: 180,
-                rotation: 270
-            }
-        };
+            hoverOffset: 4
+        }]
+    };
+    var config_tempReal2 = {
+        type: 'doughnut',
+        data: data_tempReal2,
+        options: {
+            circumference: 180,
+            rotation: 270
+        }
+    };
 
-        var data_umidReal2 = {
-            labels: [
-                'Umidade Atual em %'
+    var data_umidReal2 = {
+        labels: [
+            'Umidade Atual em %'
+        ],
+        datasets: [{
+            label: 'My First Dataset',
+            data: [estufa2umi.toFixed(1), (76 - estufa2umi)],
+            backgroundColor: [
+                '#00f2ff',
+                'whitesmoke'
             ],
-            datasets: [{
-                label: 'My First Dataset',
-                data: [estufa2umi.toFixed(1), (76 - estufa2umi)],
-                backgroundColor: [
-                    '#00f2ff',
-                    'whitesmoke'
-                ],
-                hoverOffset: 4
-            }]
-        };
+            hoverOffset: 4
+        }]
+    };
 
-        var config_umidReal2 = {
-            type: 'doughnut',
-            data: data_umidReal2,
-            options: {
-                circumference: 180,
-                rotation: 270
-            }
-        };
+    var config_umidReal2 = {
+        type: 'doughnut',
+        data: data_umidReal2,
+        options: {
+            circumference: 180,
+            rotation: 270
+        }
+    };
 
-        var chart_tempReal2 = new Chart(
-            document.getElementById('chart_tempReal2'),
-            config_tempReal2
-        );
-        var chart_umidReal2 = new Chart(
-            document.getElementById('chart_umidReal2'),
-            config_umidReal2
-        );
+    var chart_tempReal2 = new Chart(
+        document.getElementById('chart_tempReal2'),
+        config_tempReal2
+    );
+    var chart_umidReal2 = new Chart(
+        document.getElementById('chart_umidReal2'),
+        config_umidReal2
+    );
 
-    }, 1000);
+
 
 
     // GRÁFICO TEMPERATURA (ESTUFA 2) - TEMPERATURA EM TEMPO REAL
