@@ -126,9 +126,9 @@
                                     <span>Status:</span>
                                     <div class="status ideal"></div> <span>Ideal</span>
                                 </div>
-                                <div class="parte2_temp">
+                                <div class="parte2_temp" id="parte2_temp">
                                     <canvas id="chart_tempReal"></canvas>
-                                    <span class="valor_tempReal">19.7°C</span>
+                                    <span class="valor_tempReal" id="valor_tempReal">°C</span>
                                 </div>
                             </div>
                         </div>
@@ -201,9 +201,9 @@
                                     <span>Status:</span>
                                     <div class="status alerta-quente"></div> <span>Alerta</span>
                                 </div>
-                                <div class="parte2_umid">
+                                <div class="parte2_umid" id="parte2_umid">
                                     <canvas id="chart_umidReal"></canvas>
-                                    <span class="valor_umidReal">66%</span>
+                                    <span class="valor_umidReal" id="valor_umidReal">%</span>
                                 </div>
                             </div>
                         </div>
@@ -401,6 +401,131 @@
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
+    setInterval(() => {
+        buscarMedida();
+    }, 5000);
+    function buscarMedida() {
+    
+    fetch("/medidas/pegarMedida", {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idSensor: sessionStorage.ID_SENSOR
+        })
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            resposta.json().then(json => {
+                console.log(json[0].idMedida);
+                idMedida = json[0].idMedida;
+                console.log(json[0].temperaturaRegistrada);
+                tempEst1 = json[0].temperaturaRegistrada;
+                console.log(json[0].umidadeRegistrada);
+                umidEst1 = json[0].umidadeRegistrada;
+
+
+        document.getElementById('chart_umidReal').remove();
+        document.getElementById('chart_tempReal').remove();
+        document.getElementById('valor_tempReal').remove();
+        document.getElementById('valor_umidReal').remove();
+
+        ngt = document.createElement('canvas');
+        ngt.setAttribute('id', 'chart_tempReal');
+        spnT = document.createElement('span');
+        spnT.setAttribute('id', 'valor_tempReal');
+        spnT.setAttribute('class', 'valor_tempReal');
+        parte2_temp.appendChild(ngt);
+        parte2_temp.appendChild(spnT);
+
+
+        ngu = document.createElement('canvas');
+        ngu.setAttribute('id', 'chart_umidReal');
+        spnU = document.createElement('span');
+        spnU.setAttribute('id', 'valor_umidReal');
+        spnU.setAttribute('class', 'valor_umidReal');
+        parte2_umid.appendChild(ngu);
+        parte2_umid.appendChild(spnU);
+
+        
+
+        valor_tempReal.innerHTML = `${tempEst1}°C`;
+        valor_umidReal.innerHTML = `${umidEst1}%`;
+
+
+                var data_tempReal = {
+        labels: [
+            'Temperatura Atual em °C'
+        ],
+        datasets: [{
+            labels: [tempEst1],
+            data: [tempEst1, (26.7-tempEst1)],
+            backgroundColor: [
+                '#9ccc65',
+                'whitesmoke'
+            ],
+            hoverOffset: 4
+        }]
+    };
+    var config_tempReal = {
+        type: 'doughnut',
+        data: data_tempReal,
+        options: {
+            circumference: 180,
+            rotation: 270,
+            animation: 0
+        }
+    };
+
+    var data_umidReal = {
+        labels: [
+            'Umidade Atual em %'
+        ],
+        datasets: [{
+            label: 'My First Dataset',
+            data: [umidEst1, (100 - umidEst1)],
+            backgroundColor: [
+                '#e0ce2b',
+                'whitesmoke'
+            ],
+            hoverOffset: 4
+        }]
+    };
+
+    var config_umidReal = {
+        type: 'doughnut',
+        data: data_umidReal,
+        options: {
+            circumference: 180,
+            rotation: 270,
+            animation: 0
+        }
+    };
+
+    var chart_tempReal = new Chart(
+        document.getElementById('chart_tempReal'),
+        config_tempReal
+    );
+    var chart_umidReal = new Chart(
+        document.getElementById('chart_umidReal'),
+        config_umidReal
+    );
+            })
+        }
+    })
+}
+function buscarHistorico (){ 
+    fetch("/medidas/pegarHistorico", {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idSensor: sessionStorage.ID_SENSOR
+        })
+    })
+}
+
     // GRÁFICO TEMPERATURA 1 - HISTÓRICO TEMPERATURA
 
     const labels_hist = [
@@ -414,29 +539,29 @@
     const data_temp = {
         labels: labels_hist,
         datasets: [{
-                label: 'Sensor 1',
-                backgroundColor: '#e7ed3e',
-                borderColor: '#e7ed3e',
-                data: [18, 20, 21, 20.5, 20, 20, 19.3],
-            },
-            {
-                label: 'Sensor 2',
-                backgroundColor: '#ff8880',
-                borderColor: '#ff8880',
-                data: [19, 19.3, 20, 21.4, 21, 19.5, 19],
-            },
-            {
-                label: 'Sensor 3',
-                backgroundColor: '#ff892e',
-                borderColor: '#ff892e',
-                data: [19.3, 20.2, 22, 24, 21, 19.8, 19.4],
-            },
-            {
-                label: 'Sensor 4',
-                backgroundColor: '#bd3535',
-                borderColor: '#bd3535',
-                data: [19, 19.5, 20, 21, 19.8, 19.7, 19],
-            }
+            label: 'Sensor 1',
+            backgroundColor: '#e7ed3e',
+            borderColor: '#e7ed3e',
+            data: [18, 20, 21, 20.5, 20, 20, 19.3],
+        },
+        {
+            label: 'Sensor 2',
+            backgroundColor: '#ff8880',
+            borderColor: '#ff8880',
+            data: [19, 19.3, 20, 21.4, 21, 19.5, 19],
+        },
+        {
+            label: 'Sensor 3',
+            backgroundColor: '#ff892e',
+            borderColor: '#ff892e',
+            data: [19.3, 20.2, 22, 24, 21, 19.8, 19.4],
+        },
+        {
+            label: 'Sensor 4',
+            backgroundColor: '#bd3535',
+            borderColor: '#bd3535',
+            data: [19, 19.5, 20, 21, 19.8, 19.7, 19],
+        }
         ]
 
     };
@@ -510,29 +635,29 @@
     const data_umid = {
         labels: labels_hist,
         datasets: [{
-                label: 'Sensor 1',
-                backgroundColor: '#6495ED',
-                borderColor: '#6495ED',
-                data: [42, 45, 46, 48, 51, 49, 48],
-            },
-            {
-                label: 'Sensor 2',
-                backgroundColor: '#9efff7',
-                borderColor: '#9efff7',
-                data: [41, 45, 47, 47, 50, 51, 47],
-            },
-            {
-                label: 'Sensor 3',
-                backgroundColor: '#3747a6',
-                borderColor: '#3747a6',
-                data: [46, 49, 52, 53, 55, 60, 61],
-            },
-            {
-                label: 'Sensor 4',
-                backgroundColor: '#278c53',
-                borderColor: '#278c53',
-                data: [50, 54, 61, 68, 73, 78, 72],
-            }
+            label: 'Sensor 1',
+            backgroundColor: '#6495ED',
+            borderColor: '#6495ED',
+            data: [42, 45, 46, 48, 51, 49, 48],
+        },
+        {
+            label: 'Sensor 2',
+            backgroundColor: '#9efff7',
+            borderColor: '#9efff7',
+            data: [41, 45, 47, 47, 50, 51, 47],
+        },
+        {
+            label: 'Sensor 3',
+            backgroundColor: '#3747a6',
+            borderColor: '#3747a6',
+            data: [46, 49, 52, 53, 55, 60, 61],
+        },
+        {
+            label: 'Sensor 4',
+            backgroundColor: '#278c53',
+            borderColor: '#278c53',
+            data: [50, 54, 61, 68, 73, 78, 72],
+        }
         ]
     };
     const config_umid = {

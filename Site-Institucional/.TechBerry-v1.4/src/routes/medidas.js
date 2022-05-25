@@ -15,6 +15,10 @@ router.post("/pegarMedida", function (req, res) {
     console.log('Chegou na rota Medidas!')
     medidaController.pegarMedidaController(req, res);
 });
+router.post("/pegarHistorico", function (req, res) {
+    console.log('Chegou na rota historico!')
+    medidaController.pegarHistoricoController(req, res);
+});
 
 router.get("/tempo-real/:idAquario", function (req, res) {
     medidaController.buscarMedidasEmTempoReal(req, res);

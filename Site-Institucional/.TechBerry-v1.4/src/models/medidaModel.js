@@ -23,6 +23,14 @@ function pegarMedidaModel(idSensor) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+function pegarHistoricoModel (idSensor, ultimasMed){
+    instrucaoSql = `select * from
+                    medida where 
+                    medida.idSensor = ${idSensor}
+                    order by idMedida desc limit ${ultimasMed}`
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 function buscarMedidasEmTempoReal(idAquario) {
     instrucaoSql = `select 
                         temperatura, 
@@ -40,5 +48,6 @@ module.exports = {
     pegarEstufasModel,
     pegarSensoresModel,
     pegarMedidaModel,
+    pegarHistoricoModel,
     buscarMedidasEmTempoReal
 }

@@ -261,7 +261,7 @@
     var idMedida = 0;
     var tempEst1 = 0;
     var umidEst1 = 0;
-    // setInterval(()=> {
+    
     fetch("/medidas/pegarEstufas", {
         method: 'POST',
         headers: {
@@ -294,6 +294,7 @@ function buscarSensor() {
             resposta.json().then(json => {
                 console.log(json[0].idSensor);
                 idSensor = json[0].idSensor;
+                sessionStorage.ID_SENSOR = idSensor;
                 setInterval(() => {
                     buscarMedida();       
                 }, 5000);
@@ -321,21 +322,27 @@ function buscarMedida() {
                 console.log(json[0].umidadeRegistrada);
                 umidEst1 = json[0].umidadeRegistrada;
 
-            })
-        }
-    })
-}
 
-    // }, 5000);
+        document.getElementById('chart_umidReal').remove();
+        document.getElementById('chart_tempReal').remove();
+
+        ngt = document.createElement('canvas');
+        ngt.setAttribute('id', 'chart_tempReal');
+        divPai1.appendChild(ngt);
+
+        ngu = document.createElement('canvas');
+        ngu.setAttribute('id', 'chart_umidReal');
+        divPai2.appendChild(ngu);
 
 
-    var data_tempReal = {
+
+                var data_tempReal = {
         labels: [
             'Temperatura Atual em °C'
         ],
         datasets: [{
-            labels: [estufa1temp, 26.7],
-            data: [estufa1temp.toFixed(1), (26.7 - estufa1temp)],
+            labels: [tempEst1],
+            data: [tempEst1, (26.7-tempEst1)],
             backgroundColor: [
                 '#9ccc65',
                 'whitesmoke'
@@ -359,7 +366,7 @@ function buscarMedida() {
         ],
         datasets: [{
             label: 'My First Dataset',
-            data: [estufa1umi.toFixed(1), (26.7 - estufa1umi)],
+            data: [umidEst1, (100 - umidEst1)],
             backgroundColor: [
                 '#e0ce2b',
                 'whitesmoke'
@@ -386,6 +393,14 @@ function buscarMedida() {
         document.getElementById('chart_umidReal'),
         config_umidReal
     );
+            })
+        }
+    })
+}
+
+
+
+    
     var data_tempReal2 = {
         labels: [
             'Temperatura Atual em °C'
