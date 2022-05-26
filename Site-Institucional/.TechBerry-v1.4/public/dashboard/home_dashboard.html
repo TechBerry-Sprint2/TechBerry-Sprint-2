@@ -297,7 +297,7 @@ function buscarSensor() {
                 sessionStorage.ID_SENSOR = idSensor;
                 setInterval(() => {
                     buscarMedida();       
-                }, 5000);
+                }, 1000);
             })
         }
     })
@@ -328,10 +328,12 @@ function buscarMedida() {
 
         ngt = document.createElement('canvas');
         ngt.setAttribute('id', 'chart_tempReal');
+        spT1.innerHTML = `${tempEst1}ºC`;
         divPai1.appendChild(ngt);
 
         ngu = document.createElement('canvas');
         ngu.setAttribute('id', 'chart_umidReal');
+        spU1.innerHTML = `${umidEst1}%`;
         divPai2.appendChild(ngu);
 
 

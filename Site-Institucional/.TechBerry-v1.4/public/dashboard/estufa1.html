@@ -114,9 +114,9 @@
 
                                 <span class="titulo">Histórico de Temperatura (°C)</span>
                                 <div class="parte1_temp">
-                                    Dados do dia: <span id="data_atual_temp"></span>
+                                    Dados do último registro: <span id="data_atual_temp"></span>
                                 </div>
-                                <div>
+                                <div id="divPai1">
                                     <canvas id="chart_temp"></canvas>
                                 </div>
                             </div>
@@ -513,8 +513,14 @@
             })
         }
     })
+    buscarHistorico();
 }
-function buscarHistorico (){ 
+
+var vt_temp = [];
+var vt_umi = [];
+var vt_horario = [];
+
+function buscarHistorico(){ 
     fetch("/medidas/pegarHistorico", {
         method: 'POST',
         headers: {
@@ -523,32 +529,104 @@ function buscarHistorico (){
         body: JSON.stringify({
             idSensor: sessionStorage.ID_SENSOR
         })
-    })
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            resposta.json().then(json => {
+                vt_temp = [];
+                vt_umi = [];
+                vt_dia = [];
+                vt_horario = [];
+                for(i = 0; i < json.length; i++){
+                    vt_temp.push(json[i].temperaturaRegistrada);
+                    vt_umi.push(json[i].umidadeRegistrada);
+                    vt_horario.push(json[i].horario);
+                    vt_dia.push(json[i].dia);
+               }
+            });
+
+            document.getElementById('chart_temp').remove();
+            ngt = document.createElement('canvas');
+            ngt.setAttribute('id', 'chart_temp');
+
+            divPai1.appendChild(ngt);
+
+            vt_total = [[vt_dia[0],vt_horario[0]], [vt_dia[1],vt_horario[1]], [vt_dia[2],vt_horario[2]], [vt_dia[3],vt_horario[3]], 
+            [vt_dia[4],vt_horario[4]], [vt_dia[5],vt_horario[5]]];
+
+            const data_temp = {
+
+
+labels: vt_total,
+datasets: [{
+    label: 'Sensor 1',
+    backgroundColor: '#e7ed3e',
+    borderColor: '#e7ed3e',
+    data: vt_temp,
+},
+{
+    label: 'Sensor 2',
+    backgroundColor: '#ff8880',
+    borderColor: '#ff8880',
+    data: [vt_temp[0]+0.9, vt_temp[1]+0.9, vt_temp[2]+0.9, vt_temp[3]+0.9, vt_temp[4]+0.9, vt_temp[5]+0.9],
+},
+{
+    label: 'Sensor 3',
+    backgroundColor: '#ff892e',
+    borderColor: '#ff892e',
+    data: [vt_temp[0]-1.2, vt_temp[1]-1.2, vt_temp[2]-1.2, vt_temp[3]-1.2, vt_temp[4]-1.2, vt_temp[5]-1.2],
+},
+{
+    label: 'Sensor 4',
+    backgroundColor: '#bd3535',
+    borderColor: '#bd3535',
+    data: [vt_temp[0]+0.6, vt_temp[1]+0.2, vt_temp[2]+1.5, vt_temp[3]+0.1, vt_temp[4]+1.7, vt_temp[5]-0.2],
 }
+]
 
-    // GRÁFICO TEMPERATURA 1 - HISTÓRICO TEMPERATURA
+};
+const config_temp = {
+type: 'line',
+data: data_temp,
+options: {
+    responsive: true,
+    interaction: {
+        mode: 'index',
+        intersect: false,
+    },
+    stacked: false,
+    scales: {
+    yAxes: [{
+      ticks: {
+        reverse: true,
+      }
+    }]
+  }
+}
+};
 
-    const labels_hist = [
-        '13:00',
-        '13:30',
-        '14:00',
-        '14:30',
-        '15:00',
-        '15:30',
-    ];
+const chart_temp = new Chart(
+document.getElementById('chart_temp'),
+config_temp
+);
+
+        }
+    });
+}
     const data_temp = {
-        labels: labels_hist,
+
+        // labels: labels_hist,
+        labels: vt_horario,
         datasets: [{
             label: 'Sensor 1',
             backgroundColor: '#e7ed3e',
             borderColor: '#e7ed3e',
-            data: [18, 20, 21, 20.5, 20, 20, 19.3],
+            data: vt_temp,
         },
         {
             label: 'Sensor 2',
             backgroundColor: '#ff8880',
             borderColor: '#ff8880',
-            data: [19, 19.3, 20, 21.4, 21, 19.5, 19],
+            data: [vt_temp[0]+0.1, vt_temp[1]+0.1, vt_temp[2]+0.1, vt_temp[3]+0.1, vt_temp[4]+0.1, vt_temp[5]+0.1],
         },
         {
             label: 'Sensor 3',

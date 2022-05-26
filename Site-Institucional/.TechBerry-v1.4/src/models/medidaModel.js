@@ -24,7 +24,8 @@ function pegarMedidaModel(idSensor) {
     return database.executar(instrucaoSql);
 }
 function pegarHistoricoModel (idSensor, ultimasMed){
-    instrucaoSql = `select * from
+    instrucaoSql = `select idMedida, temperaturaRegistrada, umidadeRegistrada, DATE_FORMAT(horarioRegistro, '%d/%m') AS 'dia',
+                    DATE_FORMAT(horarioRegistro, '%H:%i') AS 'horario', idSensor from
                     medida where 
                     medida.idSensor = ${idSensor}
                     order by idMedida desc limit ${ultimasMed}`

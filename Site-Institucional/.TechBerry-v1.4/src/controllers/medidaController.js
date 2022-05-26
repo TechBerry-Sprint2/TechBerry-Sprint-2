@@ -49,11 +49,11 @@ function pegarMedidaController (req,res){
         res.status(500).json(erro.sqlMessage);
     });
 }
-function pegarHistoricoController (req,res){
+function pegarHistoricoController (req, res){
     const ultimasMed = 6;
     console.log(`Pegando as ultimas ${ultimasMed}`);
-    var idSensor = sessionStorage.ID_SENSOR;
-
+    var idSensor = req.body.idSensor;
+    
     medidaModel.pegarHistoricoModel(idSensor,ultimasMed).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
@@ -92,5 +92,4 @@ module.exports = {
     pegarMedidaController,
     pegarHistoricoController,
     buscarMedidasEmTempoReal
-
 }
