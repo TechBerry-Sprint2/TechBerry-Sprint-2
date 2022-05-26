@@ -35,4 +35,21 @@ CREATE TABLE medida(
     FOREIGN KEY(idSensor) REFERENCES sensor(idSensor)
 ) auto_increment = 10000;
 
-																		
+INSERT INTO cliente VALUES (null, 'Ryan Yuji', '06.376.383/0001-83', '(11) 98888-7777', 'ryan@gmail.com', '123');
+insert into estufa values (null, 'Estufa 1 do Ryan', 'Rua Haddock Lobo, 595', 1);
+insert into sensor values (null, 'DHT-11', 'SN-0236541', 5000);
+insert into medida values (null, 10.25, 78.25, now(),  2000);
+insert into medida values (null, 25.25, 50.25, now(),  2000);
+insert into medida values (null, 12.25, 30.25, now(),  2000);
+insert into medida values (null, 20.25, 90.25, now(),  2000);
+insert into medida values (null, 25.38, 80.50, now(),  2000);
+insert into medida values (null, 9.38, 10.50, now(),  2000);
+insert into medida values (null, 28.38, 10.50, now(),  2000);
+insert into medida values (null, 8.38, 10.50, now(),  2000);
+insert into medida values (null, 50.38, 10.50, now(),  2000);
+insert into medida values (null, 2.38, 10.50, now(),  2000);
+
+select * from medida;
+select * from cliente;
+
+update cliente set emailCliente = 'ryan@gmail.com' where idCliente = 1;
