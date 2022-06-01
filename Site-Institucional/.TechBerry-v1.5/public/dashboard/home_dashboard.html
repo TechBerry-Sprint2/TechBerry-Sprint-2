@@ -261,7 +261,7 @@
     var idMedida = 0;
     var tempEst1 = 0;
     var umidEst1 = 0;
-    
+
     fetch("/medidas/pegarEstufas", {
         method: 'POST',
         headers: {
@@ -279,130 +279,132 @@
             })
         }
     })
-function buscarSensor() {
-    
-    fetch("/medidas/pegarSensores", {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            idEstufa: idEstufa
-        })
-    }).then(function (resposta) {
-        if (resposta.ok) {
-            resposta.json().then(json => {
-                console.log(json[0].idSensor);
-                idSensor = json[0].idSensor;
-                sessionStorage.ID_SENSOR = idSensor;
-                setInterval(() => {
-                    buscarMedida();       
-                }, 1000);
+
+    function buscarSensor() {
+
+        fetch("/medidas/pegarSensores", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idEstufa: idEstufa
             })
-        }
-    })
-}
-function buscarMedida() {
-    
-    fetch("/medidas/pegarMedida", {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            idSensor: idSensor
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(json => {
+                    console.log(json[0].idSensor);
+                    idSensor = json[0].idSensor;
+                    sessionStorage.ID_SENSOR = idSensor;
+                    setInterval(() => {
+                        buscarMedida();
+                    }, 1000);
+                })
+            }
         })
-    }).then(function (resposta) {
-        if (resposta.ok) {
-            resposta.json().then(json => {
-                console.log(json[0].idMedida);
-                idMedida = json[0].idMedida;
-                console.log(json[0].temperaturaRegistrada);
-                tempEst1 = json[0].temperaturaRegistrada;
-                console.log(json[0].umidadeRegistrada);
-                umidEst1 = json[0].umidadeRegistrada;
+    }
 
+    function buscarMedida() {
 
-        document.getElementById('chart_umidReal').remove();
-        document.getElementById('chart_tempReal').remove();
-
-        ngt = document.createElement('canvas');
-        ngt.setAttribute('id', 'chart_tempReal');
-        spT1.innerHTML = `${tempEst1}ºC`;
-        divPai1.appendChild(ngt);
-
-        ngu = document.createElement('canvas');
-        ngu.setAttribute('id', 'chart_umidReal');
-        spU1.innerHTML = `${umidEst1}%`;
-        divPai2.appendChild(ngu);
-
-
-
-                var data_tempReal = {
-        labels: [
-            'Temperatura Atual em °C'
-        ],
-        datasets: [{
-            labels: [tempEst1],
-            data: [tempEst1, (26.7-tempEst1)],
-            backgroundColor: [
-                '#9ccc65',
-                'whitesmoke'
-            ],
-            hoverOffset: 4
-        }]
-    };
-    var config_tempReal = {
-        type: 'doughnut',
-        data: data_tempReal,
-        options: {
-            circumference: 180,
-            rotation: 270,
-            animation: 0
-        }
-    };
-
-    var data_umidReal = {
-        labels: [
-            'Umidade Atual em %'
-        ],
-        datasets: [{
-            label: 'My First Dataset',
-            data: [umidEst1, (100 - umidEst1)],
-            backgroundColor: [
-                '#e0ce2b',
-                'whitesmoke'
-            ],
-            hoverOffset: 4
-        }]
-    };
-
-    var config_umidReal = {
-        type: 'doughnut',
-        data: data_umidReal,
-        options: {
-            circumference: 180,
-            rotation: 270,
-            animation: 0
-        }
-    };
-
-    var chart_tempReal = new Chart(
-        document.getElementById('chart_tempReal'),
-        config_tempReal
-    );
-    var chart_umidReal = new Chart(
-        document.getElementById('chart_umidReal'),
-        config_umidReal
-    );
+        fetch("/medidas/pegarMedida", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idSensor: idSensor
             })
-        }
-    })
-}
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(json => {
+                    console.log(json[0].idMedida);
+                    idMedida = json[0].idMedida;
+                    console.log(json[0].temperaturaRegistrada);
+                    tempEst1 = json[0].temperaturaRegistrada;
+                    console.log(json[0].umidadeRegistrada);
+                    umidEst1 = json[0].umidadeRegistrada;
+
+
+                    document.getElementById('chart_umidReal').remove();
+                    document.getElementById('chart_tempReal').remove();
+
+                    ngt = document.createElement('canvas');
+                    ngt.setAttribute('id', 'chart_tempReal');
+                    spT1.innerHTML = `${tempEst1}ºC`;
+                    divPai1.appendChild(ngt);
+
+                    ngu = document.createElement('canvas');
+                    ngu.setAttribute('id', 'chart_umidReal');
+                    spU1.innerHTML = `${umidEst1}%`;
+                    divPai2.appendChild(ngu);
 
 
 
-    
+                    var data_tempReal = {
+                        labels: [
+                            'Temperatura Atual em °C'
+                        ],
+                        datasets: [{
+                            labels: [tempEst1],
+                            data: [tempEst1, (26.7 - tempEst1)],
+                            backgroundColor: [
+                                '#9ccc65',
+                                'whitesmoke'
+                            ],
+                            hoverOffset: 4
+                        }]
+                    };
+                    var config_tempReal = {
+                        type: 'doughnut',
+                        data: data_tempReal,
+                        options: {
+                            circumference: 180,
+                            rotation: 270,
+                            animation: 0
+                        }
+                    };
+
+                    var data_umidReal = {
+                        labels: [
+                            'Umidade Atual em %'
+                        ],
+                        datasets: [{
+                            label: 'My First Dataset',
+                            data: [umidEst1, (100 - umidEst1)],
+                            backgroundColor: [
+                                '#e0ce2b',
+                                'whitesmoke'
+                            ],
+                            hoverOffset: 4
+                        }]
+                    };
+
+                    var config_umidReal = {
+                        type: 'doughnut',
+                        data: data_umidReal,
+                        options: {
+                            circumference: 180,
+                            rotation: 270,
+                            animation: 0
+                        }
+                    };
+
+                    var chart_tempReal = new Chart(
+                        document.getElementById('chart_tempReal'),
+                        config_tempReal
+                    );
+                    var chart_umidReal = new Chart(
+                        document.getElementById('chart_umidReal'),
+                        config_umidReal
+                    );
+                })
+            }
+        })
+    }
+
+
+
+
     var data_tempReal2 = {
         labels: [
             'Temperatura Atual em °C'

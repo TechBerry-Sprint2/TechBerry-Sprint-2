@@ -552,37 +552,50 @@
 
                 divPai1.appendChild(ngt);
 
-                vt_total = [[vt_dia[5], vt_horario[5]], [vt_dia[4], vt_horario[4]], [vt_dia[3], vt_horario[3]], [vt_dia[2], vt_horario[2]],
-                [vt_dia[1], vt_horario[1]], [vt_dia[0], vt_horario[0]]];
+                vt_total = [
+                    [vt_dia[5], vt_horario[5]],
+                    [vt_dia[4], vt_horario[4]],
+                    [vt_dia[3], vt_horario[3]],
+                    [vt_dia[2], vt_horario[2]],
+                    [vt_dia[1], vt_horario[1]],
+                    [vt_dia[0], vt_horario[0]]
+                ];
 
                 const data_temp = {
 
 
                     labels: vt_total,
                     datasets: [{
-                        label: 'Sensor 1',
-                        backgroundColor: '#e7ed3e',
-                        borderColor: '#e7ed3e',
-                        data: [vt_temp[5], vt_temp[4], vt_temp[3], vt_temp[2], vt_temp[1], vt_temp[0]],
-                    },
-                    {
-                        label: 'Sensor 2',
-                        backgroundColor: '#ff8880',
-                        borderColor: '#ff8880',
-                        data: [vt_temp[5] + 0.9, vt_temp[4] + 0.9, vt_temp[3] + 0.9, vt_temp[2] + 0.9, vt_temp[1] + 0.9, vt_temp[0] + 0.9],
-                    },
-                    {
-                        label: 'Sensor 3',
-                        backgroundColor: '#ff892e',
-                        borderColor: '#ff892e',
-                        data: [vt_temp[5] - 1.2, vt_temp[4] - 1.2, vt_temp[3] - 1.2, vt_temp[2] - 1.2, vt_temp[1] - 1.2, vt_temp[0] - 1.2],
-                    },
-                    {
-                        label: 'Sensor 4',
-                        backgroundColor: '#bd3535',
-                        borderColor: '#bd3535',
-                        data: [vt_temp[5] + 0.6, vt_temp[4] + 0.2, vt_temp[3] + 1.5, vt_temp[2] + 0.1, vt_temp[1] + 1.7, vt_temp[0] - 0.2],
-                    }
+                            label: 'Sensor 1',
+                            backgroundColor: '#e7ed3e',
+                            borderColor: '#e7ed3e',
+                            data: [vt_temp[5], vt_temp[4], vt_temp[3], vt_temp[2], vt_temp[1], vt_temp[
+                                0]],
+                        },
+                        {
+                            label: 'Sensor 2',
+                            backgroundColor: '#ff8880',
+                            borderColor: '#ff8880',
+                            data: [vt_temp[5] + 0.9, vt_temp[4] + 0.9, vt_temp[3] + 0.9, vt_temp[2] +
+                                0.9, vt_temp[1] + 0.9, vt_temp[0] + 0.9
+                            ],
+                        },
+                        {
+                            label: 'Sensor 3',
+                            backgroundColor: '#ff892e',
+                            borderColor: '#ff892e',
+                            data: [vt_temp[5] - 1.2, vt_temp[4] - 1.2, vt_temp[3] - 1.2, vt_temp[2] -
+                                1.2, vt_temp[1] - 1.2, vt_temp[0] - 1.2
+                            ],
+                        },
+                        {
+                            label: 'Sensor 4',
+                            backgroundColor: '#bd3535',
+                            borderColor: '#bd3535',
+                            data: [vt_temp[5] + 0.6, vt_temp[4] + 0.2, vt_temp[3] + 1.5, vt_temp[2] +
+                                0.1, vt_temp[1] + 1.7, vt_temp[0] - 0.2
+                            ],
+                        }
                     ]
 
                 };
@@ -607,29 +620,35 @@
                 const data_umid = {
                     labels: vt_total,
                     datasets: [{
-                        label: 'Sensor 1',
-                        backgroundColor: '#6495ED',
-                        borderColor: '#6495ED',
-                        data: [vt_umi[5], vt_umi[4], vt_umi[3], vt_umi[2], vt_umi[1], vt_umi[0]],
-                    },
-                    {
-                        label: 'Sensor 2',
-                        backgroundColor: '#9efff7',
-                        borderColor: '#9efff7',
-                        data: [vt_umi[5] + 0.9, vt_umi[4] + 0.9, vt_umi[3] + 0.9, vt_umi[2] + 0.9, vt_umi[1] + 0.9, vt_umi[0] + 0.9],
-                    },
-                    {
-                        label: 'Sensor 3',
-                        backgroundColor: '#3747a6',
-                        borderColor: '#3747a6',
-                        data: [vt_umi[5] - 1.2, vt_umi[4] - 1.2, vt_umi[3] - 1.2, vt_umi[2] - 1.2, vt_umi[1] - 1.2, vt_umi[0] - 1.2],
-                    },
-                    {
-                        label: 'Sensor 4',
-                        backgroundColor: '#278c53',
-                        borderColor: '#278c53',
-                        data: [vt_umi[5] + 0.6, vt_umi[4] + 0.2, vt_umi[3] + 1.5, vt_umi[2] + 0.1, vt_umi[1] + 1.7, vt_umi[0] - 0.2],
-                    }
+                            label: 'Sensor 1',
+                            backgroundColor: '#6495ED',
+                            borderColor: '#6495ED',
+                            data: [vt_umi[5], vt_umi[4], vt_umi[3], vt_umi[2], vt_umi[1], vt_umi[0]],
+                        },
+                        {
+                            label: 'Sensor 2',
+                            backgroundColor: '#9efff7',
+                            borderColor: '#9efff7',
+                            data: [vt_umi[5] + 0.9, vt_umi[4] + 0.9, vt_umi[3] + 0.9, vt_umi[2] + 0.9,
+                                vt_umi[1] + 0.9, vt_umi[0] + 0.9
+                            ],
+                        },
+                        {
+                            label: 'Sensor 3',
+                            backgroundColor: '#3747a6',
+                            borderColor: '#3747a6',
+                            data: [vt_umi[5] - 1.2, vt_umi[4] - 1.2, vt_umi[3] - 1.2, vt_umi[2] - 1.2,
+                                vt_umi[1] - 1.2, vt_umi[0] - 1.2
+                            ],
+                        },
+                        {
+                            label: 'Sensor 4',
+                            backgroundColor: '#278c53',
+                            borderColor: '#278c53',
+                            data: [vt_umi[5] + 0.6, vt_umi[4] + 0.2, vt_umi[3] + 1.5, vt_umi[2] + 0.1,
+                                vt_umi[1] + 1.7, vt_umi[0] - 0.2
+                            ],
+                        }
                     ]
                 };
                 const config_umid = {
