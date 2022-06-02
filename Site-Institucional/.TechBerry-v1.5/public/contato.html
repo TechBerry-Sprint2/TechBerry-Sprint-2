@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechBerry | Calculadora</title>
-    <link rel="stylesheet" href="css/simulador.css">
+    <link rel="stylesheet" href="css/servicos.css">
     <link rel="icon" href="imgs/logo1.png">
+    <title>TechBerry - Contato</title>
 </head>
 
 <body>
     <!-- HEADER -->
 
-    <div class="fundo">
+    <div class="fundo_servicos">
         <div class="header">
             <div class="container">
 
@@ -33,12 +33,12 @@
                             Serviços
                         </a>
                     </li>
-                    <li class="aqui">
+                    <li>
                         <a href="simulador.html">
                             Simulador
                         </a>
                     </li>
-                    <li>
+                    <li class="aqui">
                         <a href="contato.html">
                             Contato
                         </a>
@@ -65,28 +65,16 @@
             </div>
         </div>
 
-        <!-- BANNER -->
-
         <div class="banner">
             <div class="container">
-                <div class="box1">
-                    <h1>Calcule o quanto você deixaria de perder com nossos serviços!</h1>
-                </div>
-                <div class="box2">
-                    <h1>Simulador Financeiro</h1>
-                    <h3>Qual a área de plantação que você deseja? (Em m²) </h3>
-                    <span>Considere:</span>
-                    <span>Muda do morango = R$5,90 </span>
-                    <span>Plantas por m² = 7,5 </span>
-                    <input class="ipt" id="area">
-                    <span id="mensagem_erro"></span>
-                    <button onclick="calculo()" id="butao">Calcular</button>
-                    <div id="resultado"></div>
-                </div>
+                <h1>Dúvidas? Problemas?<br>Entre em contato conosco pelo formulário!</h1>
             </div>
         </div>
     </div>
 
+    <div class="servicos" style="text-align: center;">
+        <iframe src="https://app.pipefy.com/public/form/2Sv3OQOl" height="800px" width="99%" title="Formulário" frameBorder="0"></iframe>
+    </div>
     <!-- FOOTER -->
 
     <div class="footer">
@@ -144,28 +132,7 @@
 
 
     </div>
+
 </body>
 
 </html>
-
-<script>
-    function calculo() {
-
-        if (area.value == "") {
-            mensagem_erro.style.display = 'block'
-            mensagem_erro.innerHTML = "Preencha todos os campos!"
-        } else if (area.value != Number(area.value)) {
-            mensagem_erro.style.display = 'block'
-            mensagem_erro.innerHTML = "Valor inválido!"
-        } else {
-            mensagem_erro.style.display = 'none'
-
-            var muda = 7.5;
-            var muda_total = area.value * muda
-            var preco = (area.value * muda) * 5.90;
-            resultado.innerHTML =
-                `Baseado na área de <u>${area.value}m²</u>, você precisará de <u>${muda_total} mudas</u>, que custarão <u>R$${preco.toFixed(2)}</u>.<br><br>Sabendo que a perda de morango por colheita é em média de 30%, nós conseguiriamos te ajudar a <b>economizar mais R$${(preco*0.3).toFixed(2)}</b> que seriam perdidos!`;
-
-        }
-    }
-</script>
