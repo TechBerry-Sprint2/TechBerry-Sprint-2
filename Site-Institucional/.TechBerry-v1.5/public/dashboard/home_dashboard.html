@@ -9,6 +9,7 @@
     <link rel="icon" href="../imgs/logo1.png">
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="home_dashboard.css">
+    <link rel="stylesheet" href="../css/alerta.css">
     <script src="../js/funcoes.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -103,6 +104,13 @@
                         <h5>26.7°C</h5>
                         <h5>76%</h5>
                     </div>
+                </div>
+            </div>
+
+            <div class="alerta" id="alerta">
+                <div class="mensagem">
+                    <span id="aviso">Aviso!</span>
+                    <span id="dadosAviso">A estufa X está com a temperatura elevada</span>
                 </div>
             </div>
 
@@ -255,6 +263,28 @@
 </body>
 
 <script>
+    displayRed = true;
+  
+    function chamarAlerta(){
+        audio.play();
+        alerta.style.display = 'block';
+        setInterval(()=>{
+            document.title = 'TechBerry - ALERTA';
+            if(displayRed){
+                alerta.style.backgroundColor = "white";
+                alerta.style.borderColor = "red";
+                alerta.style.color = "red";
+                displayRed = false;
+            }else{
+                alerta.style.backgroundColor = "red";
+                alerta.style.borderColor = "none";
+                alerta.style.color = "white";
+                displayRed = true;
+            }
+        }, 1000)
+    }
+    chamarAlerta()
+
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
     var idEstufa = 0;
     var idSensor = 0;
