@@ -400,14 +400,13 @@
     data_atual_umid.innerHTML = dia + "/" + mes + "/" + ano;
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
+    
     setInterval(() => {
         buscarHistorico();
         buscarMedida();
     }, 1000);
 
     function buscarMedida() {
-
         fetch("/medidas/pegarMedida", {
             method: 'POST',
             headers: {
@@ -426,7 +425,6 @@
                     console.log(json[0].umidadeRegistrada);
                     umidEst1 = json[0].umidadeRegistrada;
 
-
                     document.getElementById('chart_umidReal').remove();
                     document.getElementById('chart_tempReal').remove();
                     document.getElementById('valor_tempReal').remove();
@@ -440,7 +438,6 @@
                     parte2_temp.appendChild(ngt);
                     parte2_temp.appendChild(spnT);
 
-
                     ngu = document.createElement('canvas');
                     ngu.setAttribute('id', 'chart_umidReal');
                     spnU = document.createElement('span');
@@ -449,11 +446,8 @@
                     parte2_umid.appendChild(ngu);
                     parte2_umid.appendChild(spnU);
 
-
-
                     valor_tempReal.innerHTML = `${tempEst1}°C`;
                     valor_umidReal.innerHTML = `${umidEst1}%`;
-
 
                     var data_tempReal = {
                         labels: [
@@ -476,7 +470,7 @@
                             circumference: 180,
                             rotation: 270,
                             animation: 0
-                        }
+                        },
                     };
 
                     var data_umidReal = {
@@ -604,6 +598,7 @@
                     data: data_temp,
                     options: {
                         responsive: true,
+                        animation: 0
                     }
                 };
 
@@ -656,6 +651,7 @@
                     data: data_umid,
                     options: {
                         responsive: true,
+                        animation: 0
                     }
                 };
 
