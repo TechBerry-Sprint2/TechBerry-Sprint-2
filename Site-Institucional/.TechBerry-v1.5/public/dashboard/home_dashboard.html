@@ -85,14 +85,14 @@
 
                 <div class="regua">
                     <div class="item-regua">
-                        <h3 class="perigo-frio">Perigo</h3>
-                        <h5>12.2°C</h5>
-                        <h5>20%</h5>
+                        <h3 class="perigo-quente">Perigo</h3>
+                        <h5>Abaixo de 12.2°C</h5>
+                        <h5>0% - 20%</h5>
                     </div>
                     <div class="item-regua ">
-                        <h3 class="alerta-frio">Alerta</h3>
-                        <h5>17.7°C</h5>
-                        <h5>37%</h5>
+                        <h3 class="alerta-quente">Alerta</h3>
+                        <h5>12.3C° - 17.7°C</h5>
+                        <h5>20% - 37%</h5>
                     </div>
                     <div class="item-regua">
                         <h3 class="ideal">Ideal</h3>
@@ -101,13 +101,13 @@
                     </div>
                     <div class="item-regua">
                         <h3 class="alerta-quente">Alerta</h3>
-                        <h5>22°C</h5>
-                        <h5>64.5%</h5>
+                        <h5>22°C - 26.6°C</h5>
+                        <h5>64.5% - 75.6%</h5>
                     </div>
                     <div class="item-regua">
                         <h3 class="perigo-quente">Perigo</h3>
-                        <h5>26.7°C</h5>
-                        <h5>76%</h5>
+                        <h5>Acima de 26.7°C</h5>
+                        <h5>76% - 100%</h5>
                     </div>
                 </div>
             </div>
@@ -129,7 +129,7 @@
                                 <span class="titulo">Temperatura Atual</span>
                                 <div class="parte1_temp">
                                     <span>Status:</span>
-                                    <div class="status ideal"></div> <span>Ideal</span>
+                                    <div class="status ideal" id="kpiTemp1"></div> <span id="statusTemp1"></span>
                                 </div>
                                 <div class="parte2_temp">
                                     <div id="divPai1">
@@ -143,7 +143,7 @@
                                 <span class="titulo">Umidade Atual</span>
                                 <div class="parte1_umid">
                                     <span>Status:</span>
-                                    <div class="status alerta-quente"></div> <span>Alerta</span>
+                                    <div class="status alerta-quente" id="kpiUmid1"></div> <span id="statusUmid1"></span>
                                 </div>
                                 <div class="parte2_umid">
                                     <div id="divPai2">
@@ -155,8 +155,8 @@
                             <div class="box2">
                                 <div class="kpi">
                                     <span class="titulo">Quantidade Sensores</span>
-                                    <span>(Ativos)</span>
-                                    <span class="valor_kpi">4</span>
+                                    <span>(Ativos/Total)</span>
+                                    <span class="valor_kpi">4/5</span>
                                     <div class="valor_alerta vazio"></div>
                                 </div>
                                 <div class="kpi">
@@ -201,7 +201,7 @@
                             <span class="titulo">Temperatura Atual</span>
                             <div class="parte1_temp">
                                 <span>Status:</span>
-                                <div class="status ideal"></div> <span>Ideal</span>
+                                <div class="status ideal"></div> <span id="statusTemp2">Ideal</span>
                             </div>
                             <div class="parte2_temp">
                                 <canvas id="chart_tempReal2"></canvas>
@@ -213,7 +213,7 @@
                             <span class="titulo">Umidade Atual</span>
                             <div class="parte1_umid">
                                 <span>Status:</span>
-                                <div class="status alerta-quente"></div> <span>Alerta</span>
+                                <div class="status alerta-quente"></div> <span id="statusUmid2">Alerta</span>
                             </div>
                             <div class="parte2_umid">
                                 <canvas id="chart_umidReal2"></canvas>
@@ -223,8 +223,8 @@
                         <div class="box2">
                             <div class="kpi">
                                 <span class="titulo">Quantidade Sensores</span>
-                                <span>(Ativos)</span>
-                                <span class="valor_kpi">4</span>
+                                <span>(Ativos/Total)</span>
+                                <span class="valor_kpi">4/5</span>
                                 <div class="valor_alerta vazio"></div>
                             </div>
                             <div class="kpi">
@@ -259,9 +259,6 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     </div>
 
@@ -364,38 +361,52 @@
                     console.log(json[0].umidadeRegistrada);
                     umidEst1 = json[0].umidadeRegistrada;
 
-                    // if (tempEst1 <= 12.2){
-                    //     arrayAlertas.push('abaixo de 12.2ºC');
-                    //     arrayElemento.push('temperatura');
-                    //     arrayEstufas.push('Estufa 1');
-                    //     corTemp = '#485abc';
-                    // }else if (tempEst1 <= 17.7){
-                    //     corTemp = '#42a5f5';
-                    // }else if (tempEst1 <= 21.9){
-                    //     corTemp = '#9ccc65';
-                    // }else if (tempEst1 <= 17.7){
-                    //     corTemp = '#e0ce2b';
-                    // }else if (tempEst1 <= 17.7){
-                    //     corTemp = '#42a5f5';
-                    // }
+                    if (tempEst1 <= 12.2){
+                        arrayAlertas.push('abaixo de 12.2ºC');
+                        arrayElemento.push('temperatura');
+                        arrayEstufas.push('Estufa 1');
+                        corTemp = '#a32600';
+                        statusTemp1.innerHTML = 'Perigo Frio';
+                        kpiTemp1.setAttribute('class', 'status perigo-quente');
+                    }else if (tempEst1 <= 17.7 || tempEst1 <= 26.6){
+                        corTemp = '#42a5f5';
+                        statusTemp1.innerHTML = 'Alerta';
+                        kpiTemp1.setAttribute('class', 'status alerta-quente');
+                    }else if (tempEst1 <= 21.9){
+                        corTemp = '#9ccc65';
+                        statusTemp1.innerHTML = 'Ideal';
+                    }else{
+                        arrayAlertas.push('acima de 12.7ºC');
+                        arrayElemento.push('temperatura');
+                        arrayEstufas.push('Estufa 1');
+                        corTemp = '#a32600';
+                        statusTemp1.innerHTML = 'Perigo Quente';
+                        kpiTemp1.setAttribute('class', 'status perigo-quente');
+                    }
 
-                    // if (umidEst1 <= 20){
-                    //     arrayAlertas.push('abaixo de 12.2ºC'); 
-                    //     arrayElemento.push('umidade');
-                    //     arrayEstufas.push('Estufa 1');
-                    //     corTemp = '#485abc';
-                    // }
-
-                    
-
-                    // if (umidEst1 <= 37){
-                    //     corTemp = '#42a5f5';
-                    // }
-
-                    // if (umidEst1 <= 37){
-                    //     corTemp = '#42a5f5';
-                    // }
-                    
+                    if (umidEst1 <= 20){
+                        arrayAlertas.push('abaixo de 12.2ºC');
+                        arrayElemento.push('temperatura');
+                        arrayEstufas.push('Estufa 1');
+                        corUmid = '#485abc';
+                        statusUmid1.innerHTML = 'Perigo Frio';
+                        kpiUmid1.setAttribute('class', 'status perigo-quente');
+                    }else if (umidEst1 <= 37 || umidEst1 <= 76){
+                        corUmid = '#42a5f5';
+                        statusUmid1.innerHTML = 'Alerta';
+                        kpiUmid1.setAttribute('class', 'status alerta-quente');
+                    }else if (umidEst1 <= 65){
+                        corUmid = '#9ccc65';
+                        statusUmid1.innerHTML = 'Ideal';
+                        kpiUmid1.setAttribute('class', 'status ideal');
+                    }else{
+                        arrayAlertas.push('acima de 12.7ºC');
+                        arrayElemento.push('umidade');
+                        arrayEstufas.push('Estufa 1');
+                        corUmid = '#a32600';
+                        statusUmid1.innerHTML = 'Perigo Quente';
+                        kpiUmid1.setAttribute('class', 'status perigo-quente');
+                    }
 
                     document.getElementById('chart_umidReal').remove();
                     document.getElementById('chart_tempReal').remove();
@@ -410,8 +421,6 @@
                     spU1.innerHTML = `${umidEst1}%`;
                     divPai2.appendChild(ngu);
 
-
-
                     var data_tempReal = {
                         labels: [
                             'Temperatura Atual em °C'
@@ -420,7 +429,7 @@
                             labels: [tempEst1],
                             data: [tempEst1, (26.7 - tempEst1)],
                             backgroundColor: [
-                                '#9ccc65',
+                                corTemp,
                                 'whitesmoke'
                             ],
                             hoverOffset: 4
@@ -444,7 +453,7 @@
                             label: 'My First Dataset',
                             data: [umidEst1, (100 - umidEst1)],
                             backgroundColor: [
-                                '#e0ce2b',
+                                corUmid,
                                 'whitesmoke'
                             ],
                             hoverOffset: 4
