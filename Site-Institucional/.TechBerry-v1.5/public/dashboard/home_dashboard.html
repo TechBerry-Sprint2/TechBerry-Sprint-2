@@ -61,6 +61,11 @@
                     </details>
                 </span>
 
+                <a class="btn-nav" href="https://app.pipefy.com/public/form/2Sv3OQOl" target="_blank">
+                    <img class="icon-nav" src="../imgs/contato.png" alt="">
+                    <span class="selected">Contato</span>
+                </a>
+
 
                 <div class="btn-logout" onclick="limparSessao()">
                     <img class="icon-nav" src="../imgs/exit-icon.png" alt="">
@@ -266,24 +271,24 @@
     displayRed = true;
   
     function chamarAlerta(){
-        audio.play();
         alerta.style.display = 'block';
         setInterval(()=>{
-            document.title = 'TechBerry - ALERTA';
             if(displayRed){
                 alerta.style.backgroundColor = "white";
                 alerta.style.borderColor = "red";
                 alerta.style.color = "red";
                 displayRed = false;
+                document.title = 'TechBerry - ALERTA!';
             }else{
                 alerta.style.backgroundColor = "red";
                 alerta.style.borderColor = "none";
                 alerta.style.color = "white";
                 displayRed = true;
+                document.title = 'TechBerry - Dashboard';
             }
-        }, 1000)
+        }, 500)
     }
-    chamarAlerta()
+    chamarAlerta();
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
     var idEstufa = 0;
@@ -311,7 +316,6 @@
     })
 
     function buscarSensor() {
-
         fetch("/medidas/pegarSensores", {
             method: 'POST',
             headers: {
@@ -347,6 +351,12 @@
         }).then(function (resposta) {
             if (resposta.ok) {
                 resposta.json().then(json => {
+                    corTemp = '';
+                    corUmid = '';
+                    arrayEstufas = [];
+                    arrayElemento = [];
+                    arrayAlertas = [];
+
                     console.log(json[0].idMedida);
                     idMedida = json[0].idMedida;
                     console.log(json[0].temperaturaRegistrada);
@@ -354,6 +364,38 @@
                     console.log(json[0].umidadeRegistrada);
                     umidEst1 = json[0].umidadeRegistrada;
 
+                    // if (tempEst1 <= 12.2){
+                    //     arrayAlertas.push('abaixo de 12.2ºC');
+                    //     arrayElemento.push('temperatura');
+                    //     arrayEstufas.push('Estufa 1');
+                    //     corTemp = '#485abc';
+                    // }else if (tempEst1 <= 17.7){
+                    //     corTemp = '#42a5f5';
+                    // }else if (tempEst1 <= 21.9){
+                    //     corTemp = '#9ccc65';
+                    // }else if (tempEst1 <= 17.7){
+                    //     corTemp = '#e0ce2b';
+                    // }else if (tempEst1 <= 17.7){
+                    //     corTemp = '#42a5f5';
+                    // }
+
+                    // if (umidEst1 <= 20){
+                    //     arrayAlertas.push('abaixo de 12.2ºC'); 
+                    //     arrayElemento.push('umidade');
+                    //     arrayEstufas.push('Estufa 1');
+                    //     corTemp = '#485abc';
+                    // }
+
+                    
+
+                    // if (umidEst1 <= 37){
+                    //     corTemp = '#42a5f5';
+                    // }
+
+                    // if (umidEst1 <= 37){
+                    //     corTemp = '#42a5f5';
+                    // }
+                    
 
                     document.getElementById('chart_umidReal').remove();
                     document.getElementById('chart_tempReal').remove();

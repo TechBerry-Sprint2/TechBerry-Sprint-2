@@ -1,11 +1,10 @@
 .alerta{
-    padding: 32px;
     background: red;
     color: white;
     border-radius: 24px;
     text-align: center;
     white-space: pre;
-    box-shadow: 0 8px 16px 0 rgba(255,0,0, 0.2), 0 12px 40px 0 rgba(255,0,0, 1);
+    box-shadow: 0 4px 8px 0 rgba(255,0,0, 0.2), 0 6px 20px 0 rgba(255,0,0, 1);
 }
 
 .mensagem #aviso{
