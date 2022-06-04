@@ -390,7 +390,7 @@
                         arrayEstufas.push('Estufa 1');
                         corTemp = '#a32600';
                         statusTemp1.innerHTML = 'Perigo Frio';
-                        kpiTemp1.setAttribute('class', 'status perigo');
+                        kpiTemp1.setAttribute('class', 'status perigo-quente');
                         perigoVerificador = true;
                         statusT1 = 'Perigo';
                     }else if (tempEst1 <= 21.99){
@@ -540,13 +540,97 @@
         })
     }
 
+    var umidEst2 = umidEst1 + 1;
+    var tempEst2 = tempEst1 + 1;
+
+    if (tempEst1 <= 12.2){
+        arrayAlertas.push('abaixo de 12.3ºC');
+        arrayElemento.push('temperatura');
+        arrayEstufas.push('Estufa 1');
+        corTemp = '#a32600';
+        statusTemp1.innerHTML = 'Perigo Frio';
+        kpiTemp1.setAttribute('class', 'status perigo');
+        perigoVerificador = true;
+        statusT1 = 'Perigo';
+    }else if (tempEst1 <= 21.99){
+        corTemp = '#9ccc65';
+        statusTemp1.innerHTML = 'Ideal';
+        statusT1 = 'Ideal';
+    }else if (tempEst1 >= 22 && tempEst1 <= 25.99){
+        corTemp = '#e0ce2b';
+        statusTemp1.innerHTML = 'Alerta';
+        kpiTemp1.setAttribute('class', 'status alerta-quente');
+        statusT1 = 'Alerta';
+    }else{
+        arrayAlertas.push('acima de 26.7ºC');
+        arrayElemento.push('temperatura');
+        arrayEstufas.push('Estufa 1');
+        corTemp = '#a32600';
+        statusTemp1.innerHTML = 'Perigo Quente';
+        kpiTemp1.setAttribute('class', 'status perigo-quente');
+        perigoVerificador = true;
+        statusT1 = 'Perigo';
+    }
+
+    if (umidEst1 <= 20){
+        arrayAlertas.push('abaixo de 20.1%');
+        arrayElemento.push('umidade');
+        arrayEstufas.push('Estufa 1');
+        corUmid = '#a32600';
+        statusUmid1.innerHTML = 'Perigo Frio';
+        kpiUmid1.setAttribute('class', 'status perigo-quente');
+        perigoVerificador = true;
+        statusU1 = 'Perigo';
+    }else if (umidEst1 >= 20.01 && umidEst1 <= 37.1){
+        corUmid = '#e0ce2b';
+        statusUmid1.innerHTML = 'Alerta';
+        kpiUmid1.setAttribute('class', 'status alerta-quente');
+        statusU1 = 'Alerta';
+    }else if (umidEst1 >= 37.1 && umidEst1 <= 64.49){
+        corUmid = '#66B366';
+        statusUmid1.innerHTML = 'Ideal';
+        kpiUmid1.setAttribute('class', 'status ideal');
+        statusU1 = 'Ideal';
+    }else if (umidEst1 >= 64.5 && umidEst1 <= 75.99){
+        corUmid = '#e0ce2b';
+        statusUmid1.innerHTML = 'Alerta';
+        kpiUmid1.setAttribute('class', 'status alerta-quente');
+        statusU1 = 'Alerta';
+    }else{
+        arrayAlertas.push('acima de 75.9%');
+        arrayElemento.push('umidade');
+        arrayEstufas.push('Estufa 1');
+        corUmid = '#a32600';
+        statusUmid1.innerHTML = 'Perigo Quente';
+        kpiUmid1.setAttribute('class', 'status perigo-quente');
+        perigoVerificador = true;
+        statusU1 = 'Perigo';
+    }
+
+    if(statusT1 == 'Perigo' && statusU1 == 'Perigo'){
+        ideal.style.display = 'none';
+        alerta.style.display = 'none';
+        chamarPerigo(arrayAlertas, arrayElemento, arrayEstufas);
+        perigoAtivado = true;
+    }else if(statusT1 == 'Ideal' && statusU1 == 'Ideal'){
+        alerta.style.display = 'none';
+        perigo.style.display = 'none';
+        ideal.style.display = 'block';
+        perigoAtivado = false;
+    }else{
+        ideal.style.display = 'none';
+        perigo.style.display = 'none';
+        alerta.style.display = 'block';
+        perigoAtivado = false;
+    }
+    
     var data_tempReal2 = {
         labels: [
             'Temperatura Atual em °C'
         ],
         datasets: [{
             label: 'My First Dataset',
-            data: [estufa2temp.toFixed(1), (26.7 - estufa2temp)],
+            data: [tempEst2.toFixed(1), (26.7 - tempEst2)],
             backgroundColor: [
                 '#9ccc65',
                 'whitesmoke'
@@ -569,9 +653,9 @@
         ],
         datasets: [{
             label: 'My First Dataset',
-            data: [estufa2umi.toFixed(1), (76 - estufa2umi)],
+            data: [umidEst2.toFixed(1), (100 - umidEst2)],
             backgroundColor: [
-                '#00f2ff',
+                color,
                 'whitesmoke'
             ],
             hoverOffset: 4
@@ -595,9 +679,6 @@
         document.getElementById('chart_umidReal2'),
         config_umidReal2
     );
-
-
-
 
     // GRÁFICO TEMPERATURA (ESTUFA 2) - TEMPERATURA EM TEMPO REAL
 
