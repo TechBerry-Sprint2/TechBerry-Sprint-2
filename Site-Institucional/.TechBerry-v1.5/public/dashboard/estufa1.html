@@ -277,7 +277,7 @@
                                             <span class="titulo">Temperatura Atual</span>
                                             <div class="parte1_temp">
                                                 <span>Status:</span>
-                                                <div class="status ideal"></div> <span>Ideal</span>
+                                                <div class="status ideal" id="kpiTemp1"></div> <span id="statusTemp1"></span>
                                             </div>
                                             <div class="parte2_temp">
                                                 <canvas id="chart_tempReal2"></canvas>
@@ -317,7 +317,7 @@
                                             <span class="titulo">Umidade Atual</span>
                                             <div class="parte1_umid">
                                                 <span>Status:</span>
-                                                <div class="status alerta-quente"></div> <span>Alerta</span>
+                                                <div class="status alerta-quente" id="kpiUmid2"></div> <span id="statusUmid1"></span>
                                             </div>
                                             <div class="parte2_umid">
                                                 <canvas id="chart_umidReal3"></canvas>
@@ -454,6 +454,61 @@
                     valor_tempReal.innerHTML = `${tempEst1}°C`;
                     valor_umidReal.innerHTML = `${umidEst1}%`;
 
+                    if (tempEst1 <= 12.2){
+                        corTemp = '#a32600';
+                        statusTemp1.innerHTML = 'Perigo Frio';
+                        kpiTemp1.setAttribute('class', 'status perigo-quente');
+                        perigoVerificador = true;
+                        statusT1 = 'Perigo';
+                    }else if (tempEst1 <= 21.99){
+                        corTemp = '#9ccc65';
+                        statusTemp1.innerHTML = 'Ideal';
+                        statusT1 = 'Ideal';
+                    }else if (tempEst1 >= 22 && tempEst1 <= 25.99){
+                        corTemp = '#e0ce2b';
+                        statusTemp1.innerHTML = 'Alerta';
+                        kpiTemp1.setAttribute('class', 'status alerta-quente');
+                        statusT1 = 'Alerta';
+                    }else{
+                        arrayAlertas.push('acima de 26.7ºC');
+                        arrayElemento.push('temperatura');
+                        arrayEstufas.push('Estufa 1');
+                        corTemp = '#a32600';
+                        statusTemp1.innerHTML = 'Perigo Quente';
+                        kpiTemp1.setAttribute('class', 'status perigo-quente');
+                        perigoVerificador = true;
+                        statusT1 = 'Perigo';
+                    }
+
+                    if (umidEst1 <= 20){
+                        corUmid = '#a32600';
+                        statusUmid1.innerHTML = 'Perigo Frio';
+                        kpiUmid1.setAttribute('class', 'status perigo-quente');
+                        perigoVerificador = true;
+                        statusU1 = 'Perigo';
+                    }else if (umidEst1 >= 20.01 && umidEst1 <= 37.1){
+                        corUmid = '#e0ce2b';
+                        statusUmid1.innerHTML = 'Alerta';
+                        kpiUmid1.setAttribute('class', 'status alerta-quente');
+                        statusU1 = 'Alerta';
+                    }else if (umidEst1 >= 37.1 && umidEst1 <= 64.49){
+                        corUmid = '#66B366';
+                        statusUmid1.innerHTML = 'Ideal';
+                        kpiUmid1.setAttribute('class', 'status ideal');
+                        statusU1 = 'Ideal';
+                    }else if (umidEst1 >= 64.5 && umidEst1 <= 75.99){
+                        corUmid = '#e0ce2b';
+                        statusUmid1.innerHTML = 'Alerta';
+                        kpiUmid1.setAttribute('class', 'status alerta-quente');
+                        statusU1 = 'Alerta';
+                    }else{
+                        corUmid = '#a32600';
+                        statusUmid1.innerHTML = 'Perigo Quente';
+                        kpiUmid1.setAttribute('class', 'status perigo-quente');
+                        perigoVerificador = true;
+                        statusU1 = 'Perigo';
+                    }
+
                     var data_tempReal = {
                         labels: [
                             'Temperatura Atual em °C'
@@ -462,7 +517,7 @@
                             labels: [tempEst1],
                             data: [tempEst1, (26.7 - tempEst1)],
                             backgroundColor: [
-                                '#9ccc65',
+                                corTemp,
                                 'whitesmoke'
                             ],
                             hoverOffset: 4
@@ -486,7 +541,7 @@
                             label: 'My First Dataset',
                             data: [umidEst1, (100 - umidEst1)],
                             backgroundColor: [
-                                '#e0ce2b',
+                                corUmid,
                                 'whitesmoke'
                             ],
                             hoverOffset: 4

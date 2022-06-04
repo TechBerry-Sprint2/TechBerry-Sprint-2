@@ -8,7 +8,7 @@ function entrar(email, senha) {
         instrucaoSql = `SELECT * FROM cliente WHERE emailCliente = '${email}' AND senha = CONVERT(VARCHAR(32), HashBytes('MD5', '${senha}'), 2);`;
     }
     else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `SELECT * FROM cliente WHERE emailCliente = '${email}' AND senha = MD5('${senha})`;
+        instrucaoSql = `SELECT * FROM cliente WHERE emailCliente = '${email}' AND senha = MD5('${senha}')`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -23,10 +23,10 @@ function cadastrar(nome, cnpj, telefone, email, senha) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `INSERT INTO cliente (nome, cnpj, telefone, email, senha) VALUES (null, '${nome}', '${cnpj}', '${telefone}', '${email}', 'CONVERT(VARCHAR(32), HashBytes('MD5', '${senha}'), 2)');`;
+        instrucaoSql = `INSERT INTO cliente (nome, cnpj, telefone, email, senha) VALUES ('${nome}', '${cnpj}', '${telefone}', '${email}', CONVERT(VARCHAR(32), HashBytes('MD5', '${senha}'), 2));`;
     }
     else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `INSERT INTO cliente (nome, cnpj, telefone, email, senha) VALUES (null, '${nome}', '${cnpj}', '${telefone}', '${email}', MD5('${senha}'));`;
+        instrucaoSql = `INSERT INTO cliente (nomeCliente, cnpj, telefoneCliente, emailCliente, senha) VALUES ('${nome}', '${cnpj}', '${telefone}', '${email}', MD5('${senha}'));`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
