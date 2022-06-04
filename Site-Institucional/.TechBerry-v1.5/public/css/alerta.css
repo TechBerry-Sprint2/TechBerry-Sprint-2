@@ -1,4 +1,5 @@
-.perigo, .alerta, .ideal{
+.perigoBox, .alertaBox, .idealBox{
+    display: none;
     padding: 32px;
     background: rgba(255, 0, 0, 0.745);
     color: white;
@@ -7,13 +8,13 @@
     box-shadow: 0 4px 8px 0 rgba(255, 0, 0, 0.2), 0 6px 20px 0 rgba(255, 0, 0, 1);
 }
 
-.alerta{
+.alertaBox{
     background-color: rgba(255, 230, 1, 0.700);
     color: #000;
     box-shadow: 0 4px 8px 0 rgba(224, 206, 43, 0.2), 0 6px 20px 0 rgba(224, 206, 43, 0.533);
 }
 
-.ideal{
+.idealBox{
     background-color: rgba(0, 128, 0, 0.600);
     color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 128, 0, 0.2), 0 6px 20px 0 rgba(0, 128, 0, 0.745);

@@ -190,7 +190,7 @@ AND estufa.idCliente = cliente.idCliente;
 
 -- Perigo em ambos - Passou nos testes; 
 INSERT INTO medida VALUES
-(NULL, 12.4, 25.05, '2022-05-25 20:02:27', 2000);
+(NULL, 12.1, 78.07, '2022-05-25 20:02:29', 2000);
 
 -- Alerta Umidade - Ideal Temp - Passou nos testes;
 INSERT INTO medida VALUES

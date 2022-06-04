@@ -110,24 +110,24 @@
                 </div>
             </div>
 
-            <div class="perigo" id="perigo">
+            <div class="perigoBox" id="perigo">
                 <div class="mensagem">
                     <span id="aviso">PERIGO!</span>
-                    <span id="dadosAviso"></span>
+                    <span id="dadosAvisoPerigo"></span>
                 </div>
             </div>
 
-            <div class="alerta" id="alerta">
+            <div class="alertaBox" id="alerta">
                 <div class="mensagem">
                     <span id="aviso">Atenção!</span><br>
-                    <span id="dadosAviso">Medidas não ideais</span>
+                    <span id="dadosAvisoAlerta">Medidas não ideais</span>
                 </div>
             </div>
 
-            <div class="ideal" id="ideal">
+            <div class="idealBox" id="ideal">
                 <div class="mensagem">
                     <span id="aviso">Tudo ok!</span><br>
-                    <span id="dadosAviso">A temperatura e a umidade estão ideais.</span>
+                    <span id="dadosAvisoIdeal">A temperatura e a umidade estão ideais.</span>
                 </div>
             </div>
 
@@ -286,9 +286,9 @@
             return false;
         }
         perigo.style.display = 'block';
-
         for(i = 0; i < arrayAlertas.length; i++){
-            dadosAviso.innerHTML += `<br>A ${arrayEstufas[i]} está com a ${arrayElemento[i]} ${arrayAlertas[i]}!`;
+            console.log(i)
+            dadosAvisoPerigo.innerHTML += `<br>A ${arrayEstufas[i]} está com a ${arrayElemento[i]} ${arrayAlertas[i]}!`;
         }
 
         setInterval(()=>{
