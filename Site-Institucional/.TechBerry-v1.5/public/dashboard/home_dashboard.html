@@ -40,7 +40,6 @@
                     <span class="selected">Home</span>
                 </a>
 
-
                 <span class="lista">
                     <details>
 
@@ -66,7 +65,6 @@
                     <span class="selected">Contato</span>
                 </a>
 
-
                 <div class="btn-logout" onclick="limparSessao()">
                     <img class="icon-nav" src="../imgs/exit-icon.png" alt="">
                     <span>Sair</span>
@@ -86,13 +84,13 @@
                 <div class="regua">
                     <div class="item-regua">
                         <h3 class="perigo-quente">Perigo</h3>
-                        <h5>Abaixo de 12.2°C</h5>
+                        <h5>Abaixo de 12.3°C</h5>
                         <h5>0% - 20%</h5>
                     </div>
                     <div class="item-regua ">
                         <h3 class="alerta-quente">Alerta</h3>
                         <h5>12.3C° - 17.7°C</h5>
-                        <h5>20% - 37%</h5>
+                        <h5>20.1% - 37%</h5>
                     </div>
                     <div class="item-regua">
                         <h3 class="ideal">Ideal</h3>
@@ -102,20 +100,34 @@
                     <div class="item-regua">
                         <h3 class="alerta-quente">Alerta</h3>
                         <h5>22°C - 26.6°C</h5>
-                        <h5>64.5% - 75.6%</h5>
+                        <h5>64.5% - 75.9%</h5>
                     </div>
                     <div class="item-regua">
                         <h3 class="perigo-quente">Perigo</h3>
-                        <h5>Acima de 26.7°C</h5>
+                        <h5>Acima de 26.6°C</h5>
                         <h5>76% - 100%</h5>
                     </div>
                 </div>
             </div>
 
+            <div class="perigo" id="perigo">
+                <div class="mensagem">
+                    <span id="aviso">PERIGO!</span>
+                    <span id="dadosAviso"></span>
+                </div>
+            </div>
+
             <div class="alerta" id="alerta">
                 <div class="mensagem">
-                    <span id="aviso">Aviso!</span>
-                    <span id="dadosAviso">A estufa X está com a temperatura elevada</span>
+                    <span id="aviso">Atenção!</span><br>
+                    <span id="dadosAviso">Medidas não ideais</span>
+                </div>
+            </div>
+
+            <div class="ideal" id="ideal">
+                <div class="mensagem">
+                    <span id="aviso">Tudo ok!</span><br>
+                    <span id="dadosAviso">A temperatura e a umidade estão ideais.</span>
                 </div>
             </div>
 
@@ -157,7 +169,7 @@
                                     <span class="titulo">Quantidade Sensores</span>
                                     <span>(Ativos/Total)</span>
                                     <span class="valor_kpi">4/5</span>
-                                    <div class="valor_alerta vazio"></div>
+                                    <div class="valor_alerta perigo-quente"></div>
                                 </div>
                                 <div class="kpi">
                                     <span class="titulo">Anormalidades</span>
@@ -225,7 +237,7 @@
                                 <span class="titulo">Quantidade Sensores</span>
                                 <span>(Ativos/Total)</span>
                                 <span class="valor_kpi">4/5</span>
-                                <div class="valor_alerta vazio"></div>
+                                <div class="valor_alerta perigo-quente"></div>
                             </div>
                             <div class="kpi">
                                 <span class="titulo">Anormalidades</span>
@@ -266,26 +278,35 @@
 
 <script>
     displayRed = true;
+    perigo.style.display = 'none';
+    perigoAtivado = false;
   
-    function chamarAlerta(){
-        alerta.style.display = 'block';
+    function chamarPerigo(arrayAlertas, arrayElemento, arrayEstufas){
+        if(perigoAtivado){
+            return false;
+        }
+        perigo.style.display = 'block';
+
+        for(i = 0; i < arrayAlertas.length; i++){
+            dadosAviso.innerHTML += `<br>A ${arrayEstufas[i]} está com a ${arrayElemento[i]} ${arrayAlertas[i]}!`;
+        }
+
         setInterval(()=>{
             if(displayRed){
-                alerta.style.backgroundColor = "white";
-                alerta.style.borderColor = "red";
-                alerta.style.color = "red";
+                perigo.style.backgroundColor = "white";
+                perigo.style.borderColor = "red";
+                perigo.style.color = "red";
                 displayRed = false;
                 document.title = 'TechBerry - ALERTA!';
             }else{
-                alerta.style.backgroundColor = "red";
-                alerta.style.borderColor = "none";
-                alerta.style.color = "white";
+                perigo.style.backgroundColor = "rgba(255, 0, 0, 0.745)";
+                perigo.style.borderColor = "none";
+                perigo.style.color = "white";
                 displayRed = true;
                 document.title = 'TechBerry - Dashboard';
             }
-        }, 500)
+        }, 1000)
     }
-    chamarAlerta();
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
     var idEstufa = 0;
@@ -329,14 +350,13 @@
                     sessionStorage.ID_SENSOR = idSensor;
                     setInterval(() => {
                         buscarMedida();
-                    }, 1000);
+                    }, 2000);
                 })
             }
         })
     }
 
     function buscarMedida() {
-
         fetch("/medidas/pegarMedida", {
             method: 'POST',
             headers: {
@@ -350,62 +370,99 @@
                 resposta.json().then(json => {
                     corTemp = '';
                     corUmid = '';
+                    perigoVerificador = false;
                     arrayEstufas = [];
                     arrayElemento = [];
                     arrayAlertas = [];
+                    statusT1 = '';
+                    statusU1 = '';
 
-                    console.log(json[0].idMedida);
+                    // console.log(json[0].idMedida);
                     idMedida = json[0].idMedida;
-                    console.log(json[0].temperaturaRegistrada);
+                    // console.log(json[0].temperaturaRegistrada);
                     tempEst1 = json[0].temperaturaRegistrada;
-                    console.log(json[0].umidadeRegistrada);
+                    // console.log(json[0].umidadeRegistrada);
                     umidEst1 = json[0].umidadeRegistrada;
 
                     if (tempEst1 <= 12.2){
-                        arrayAlertas.push('abaixo de 12.2ºC');
+                        arrayAlertas.push('abaixo de 12.3ºC');
                         arrayElemento.push('temperatura');
                         arrayEstufas.push('Estufa 1');
                         corTemp = '#a32600';
                         statusTemp1.innerHTML = 'Perigo Frio';
-                        kpiTemp1.setAttribute('class', 'status perigo-quente');
-                    }else if (tempEst1 <= 17.7 || tempEst1 <= 26.6){
-                        corTemp = '#42a5f5';
-                        statusTemp1.innerHTML = 'Alerta';
-                        kpiTemp1.setAttribute('class', 'status alerta-quente');
-                    }else if (tempEst1 <= 21.9){
+                        kpiTemp1.setAttribute('class', 'status perigo');
+                        perigoVerificador = true;
+                        statusT1 = 'Perigo';
+                    }else if (tempEst1 <= 21.99){
                         corTemp = '#9ccc65';
                         statusTemp1.innerHTML = 'Ideal';
+                        statusT1 = 'Ideal';
+                    }else if (tempEst1 >= 22 && tempEst1 <= 25.99){
+                        corTemp = '#e0ce2b';
+                        statusTemp1.innerHTML = 'Alerta';
+                        kpiTemp1.setAttribute('class', 'status alerta-quente');
+                        statusT1 = 'Alerta';
                     }else{
-                        arrayAlertas.push('acima de 12.7ºC');
+                        arrayAlertas.push('acima de 26.7ºC');
                         arrayElemento.push('temperatura');
                         arrayEstufas.push('Estufa 1');
                         corTemp = '#a32600';
                         statusTemp1.innerHTML = 'Perigo Quente';
                         kpiTemp1.setAttribute('class', 'status perigo-quente');
+                        perigoVerificador = true;
+                        statusT1 = 'Perigo';
                     }
 
                     if (umidEst1 <= 20){
-                        arrayAlertas.push('abaixo de 12.2ºC');
-                        arrayElemento.push('temperatura');
+                        arrayAlertas.push('abaixo de 20.1%');
+                        arrayElemento.push('umidade');
                         arrayEstufas.push('Estufa 1');
-                        corUmid = '#485abc';
+                        corUmid = '#a32600';
                         statusUmid1.innerHTML = 'Perigo Frio';
                         kpiUmid1.setAttribute('class', 'status perigo-quente');
-                    }else if (umidEst1 <= 37 || umidEst1 <= 76){
-                        corUmid = '#42a5f5';
+                        perigoVerificador = true;
+                        statusU1 = 'Perigo';
+                    }else if (umidEst1 >= 20.01 && umidEst1 <= 37.1){
+                        corUmid = '#e0ce2b';
                         statusUmid1.innerHTML = 'Alerta';
                         kpiUmid1.setAttribute('class', 'status alerta-quente');
-                    }else if (umidEst1 <= 65){
-                        corUmid = '#9ccc65';
+                        statusU1 = 'Alerta';
+                    }else if (umidEst1 >= 37.1 && umidEst1 <= 64.49){
+                        corUmid = '#66B366';
                         statusUmid1.innerHTML = 'Ideal';
                         kpiUmid1.setAttribute('class', 'status ideal');
+                        statusU1 = 'Ideal';
+                    }else if (umidEst1 >= 64.5 && umidEst1 <= 75.99){
+                        corUmid = '#e0ce2b';
+                        statusUmid1.innerHTML = 'Alerta';
+                        kpiUmid1.setAttribute('class', 'status alerta-quente');
+                        statusU1 = 'Alerta';
                     }else{
-                        arrayAlertas.push('acima de 12.7ºC');
+                        arrayAlertas.push('acima de 75.9%');
                         arrayElemento.push('umidade');
                         arrayEstufas.push('Estufa 1');
                         corUmid = '#a32600';
                         statusUmid1.innerHTML = 'Perigo Quente';
                         kpiUmid1.setAttribute('class', 'status perigo-quente');
+                        perigoVerificador = true;
+                        statusU1 = 'Perigo';
+                    }
+
+                    if(statusT1 == 'Perigo' && statusU1 == 'Perigo'){
+                        ideal.style.display = 'none';
+                        alerta.style.display = 'none';
+                        chamarPerigo(arrayAlertas, arrayElemento, arrayEstufas);
+                        perigoAtivado = true;
+                    }else if(statusT1 == 'Ideal' && statusU1 == 'Ideal'){
+                        alerta.style.display = 'none';
+                        perigo.style.display = 'none';
+                        ideal.style.display = 'block';
+                        perigoAtivado = false;
+                    }else{
+                        ideal.style.display = 'none';
+                        perigo.style.display = 'none';
+                        alerta.style.display = 'block';
+                        perigoAtivado = false;
                     }
 
                     document.getElementById('chart_umidReal').remove();
