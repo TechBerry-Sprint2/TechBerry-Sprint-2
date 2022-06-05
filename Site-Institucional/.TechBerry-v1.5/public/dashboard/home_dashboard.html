@@ -42,7 +42,6 @@
 
                 <span class="lista">
                     <details>
-
                         <summary class="btn-nav">
                             <img class="icon-nav" src="../imgs/plant-pot.png" alt="">
                             <span>Estufas</span>
@@ -131,9 +130,49 @@
                 </div>
             </div>
 
+            <div class="est_resumos">
+                <div class="est">
+                    <div class="titulo_resumo" onclick="mudar(1)">Estufa 1</div>
+                    <div class="status_resumo">
+                        <span> Temp: <div class="status perigo-quente"></div> <span class="tipo_alerta">Perigo Quente</span></span>
+                        <span> Umid: <div class="status perigo-quente" ></div> <span class="tipo_alerta">Perigo Seco</span></span>
+                    </div>
+                </div>
+                <div class="est">
+                    <div class="titulo_resumo" onclick="mudar(2)">Estufa 2</div>
+                    <div class="status_resumo">
+                        <span> Temp: <div class="status perigo-quente"></div> <span class="tipo_alerta">Perigo Quente</span></span>
+                        <span> Umid: <div class="status perigo-quente" ></div> <span class="tipo_alerta">Perigo Seco</span></span>
+                    </div>
+                </div>
+                <div class="est">
+                    <div class="titulo_resumo" onclick="mudar(3)">Estufa 3</div>
+                    <div class="status_resumo">
+                        <span> Temp: <div class="status perigo-quente"></div> <span class="tipo_alerta">Perigo Quente</span></span>
+                        <span> Umid: <div class="status perigo-quente" ></div> <span class="tipo_alerta">Perigo Seco</span></span>
+                    </div>
+                </div>
+                <div class="est" onclick="mudar(4)">
+                    <div class="titulo_resumo">Estufa 4</div>
+                    <div class="status_resumo">
+                        <span> Temp: <div class="status perigo-quente"></div> <span class="tipo_alerta">Perigo Quente</span></span>
+                        <span> Umid: <div class="status perigo-quente" ></div> <span class="tipo_alerta">Perigo Seco</span></span>
+                    </div>
+                </div>
+                <div class="est">
+                    <div class="titulo_resumo" onclick="mudar(5)">Estufa 5</div>
+                    <div class="status_resumo">
+                        <span> Temp: <div class="status perigo-quente"></div> <span class="tipo_alerta">Perigo Quente</span></span>
+                        <span> Umid: <div class="status perigo-quente" ></div> <span class="tipo_alerta">Perigo Seco</span></span>
+                    </div>
+                </div>
+                
+
+            </div>
+
             <div class="principais">
                 <div class="principal1">
-                    <span class="nome_estufa">Estufa 1</span>
+                    <span id="nome_estufa" class="nome_estufa">Estufa 1</span>
 
                     <div class="informacoes_tudo">
                         <div class="informacoes info1">
@@ -204,7 +243,7 @@
                     </div>
                 </div>
             </div>
-            <div class="principais">
+            <!-- <div class="principais">
                 <div class="principal1">
                     <span class="nome_estufa">Estufa 2</span>
 
@@ -270,13 +309,18 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 
 </body>
 
 <script>
+    function mudar(estufa) {
+        document.getElementById("nome_estufa").innerHTML = `Estufa ${estufa}`;
+    } 
+
+
     displayRed = true;
     perigo.style.display = 'none';
     perigoAtivado = false;
