@@ -8,7 +8,7 @@ function entrar(email, senha) {
         instrucaoSql = `SELECT * FROM cliente WHERE emailCliente = '${email}' AND senha = CONVERT(VARCHAR(32), HashBytes('MD5', '${senha}'), 2);`;
     }
     else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `SELECT * FROM cliente WHERE emailCliente = '${email}' AND senha = MD5('${senha}')`;
+        instrucaoSql = `SELECT * FROM cliente WHERE emailCliente = '${email}' AND senha = MD5('${senha}');`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
