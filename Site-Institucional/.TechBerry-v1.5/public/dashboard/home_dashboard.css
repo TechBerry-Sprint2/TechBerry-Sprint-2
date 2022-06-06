@@ -221,7 +221,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .est {
@@ -229,10 +229,18 @@
     height: fit-content;
     border-radius: 12px;
     display: flex;
+    margin-right: 1%;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    font-size: small;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+}
+
+.est span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .est:hover {
@@ -259,16 +267,15 @@
     height: fit-content;
 }
 
-.status_resumo .status {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-}
-
 .status_resumo span {
     width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: flex-start;
+}
+
+.tipo_alerta {
+    width: fit-content;
 }
 
